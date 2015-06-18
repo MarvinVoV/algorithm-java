@@ -15,8 +15,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
         </dependency>
-<<<<<<< HEAD
-=======
+
         <dependency>
             <groupId>commons-digester</groupId>
             <artifactId>commons-digester</artifactId>
@@ -40,7 +39,6 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
->>>>>>> aa4dfef9e82b7d511bbd2cd8b89c1e4d5db7fd74
     </dependencies>
 
 </project>
