@@ -1,5 +1,8 @@
 package sun.jtutorial.core.nio;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -12,6 +15,8 @@ import java.util.Iterator;
  * Created by 264929 on 2015/7/27.
  */
 public class SelectClientA {
+
+    private static Logger logger = LoggerFactory.getLogger(SelectClientA.class);
 
     public static void main(String[] args) {
         SocketChannel client = null;
@@ -36,10 +41,10 @@ public class SelectClientA {
                     try {
                         if (key.isConnectable()) {
                             SocketChannel socketChannel = (SocketChannel) key.channel();
-                            if(socketChannel.finishConnect()){
-                                System.out.println(socketChannel.getRemoteAddress().toString());
-                            }else{
-                                System.out.println("connect to server failed.");
+                            if (socketChannel.finishConnect()) {
+                                logger.info("connecte to {} success.", socketChannel.getRemoteAddress());
+                            }else {
+                                logger.info("connecte to {} failed.", socketChannel.getRemoteAddress());
                             }
                             socketChannel.register(selector, SelectionKey.OP_READ);
                         }
@@ -80,27 +85,21 @@ public class SelectClientA {
         SocketChannel channel = (SocketChannel) key.channel();
         ByteBuffer buffer = ByteBuffer.allocate(16 * 1024);
         buffer.clear();
-        count = channel.read(buffer);
-        System.out.println("count = " + count);
 
-        buffer.flip();
-        System.out.println(Tools.getString(buffer));
-//        while (buffer.hasRemaining()) {
-//            System.out.println(buffer.getChar());
-//        }
-//        while ((count = channel.read(buffer)) > 0) {
-//            // make buffer readable
-//            buffer.flip();
-//            // send the data; don't assume it goes all at once.
-//            while (buffer.hasRemaining()) {
-//                System.out.printf(buffer.get());
-//            }
-//            buffer.clear();
-//        }
-//        if (count < 0) {
-//            // close channel on EOF, invalidates the key
-//            channel.close();
-//        }
+        while ((count = channel.read(buffer)) > 0) {
+            // make buffer readable
+            buffer.flip();
+            // send the data; don't assume it goes all at once.
+            //while (buffer.hasRemaining()) {
+                System.out.println(Tools.getString(buffer));
+            //}
+
+            buffer.clear();
+        }
+        if (count < 0) {
+            // close channel on EOF, invalidates the key
+            channel.close();
+        }
     }
 }
 

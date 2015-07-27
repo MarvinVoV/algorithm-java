@@ -1,5 +1,7 @@
 package sun.jtutorial.core.nio;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.jtutorial.core.socket.Server;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.Iterator;
  * Created by 264929 on 2015/7/27.
  */
 public class SelectServerA {
+    private static Logger logger = LoggerFactory.getLogger(SelectServerA.class);
 
     private static ByteBuffer buffer = ByteBuffer.allocate(16 * 1024);
 
@@ -33,6 +36,7 @@ public class SelectServerA {
 
             // Create listening socket
             ServerSocket serverSocket = server.socket();
+            serverSocket.setReuseAddress(true);
             serverSocket.bind(new InetSocketAddress(Constants.PORT));
 
             // A multiplexor of SelectableChannel objects.
@@ -48,20 +52,17 @@ public class SelectServerA {
                 while (it.hasNext()) {
                     SelectionKey key = it.next();
                     try {
-                        if (key.isConnectable()) {
-                            System.out.println("server connect");
-                            ((SocketChannel) key.channel()).finishConnect();
-                        }
-
-                        if (key.isAcceptable()) {
+                        if (key.isValid() && key.isAcceptable()) {
                             SocketChannel client = server.accept();
-                            System.out.println(client.getRemoteAddress().toString());
+                            logger.info("client {} connected success.", client.getRemoteAddress());
                             client.configureBlocking(false);
+                            
+                            client.socket().setTcpNoDelay(true);
                             client.register(selector, SelectionKey.OP_READ);
                             sayHello(client);
                         }
 
-                        if (key.isReadable()) {
+                        if (key.isValid() && key.isReadable()) {
                             echoToClient(key);
                         }
                     } catch (IOException ex) {
