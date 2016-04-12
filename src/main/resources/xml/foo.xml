@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<foo name="The Parent">
-    <bar id="123" title="The first child"/>
-    <bar id="456" title="The second child">
-        <zoo name="zone"/>
-    </bar>
-</foo>
