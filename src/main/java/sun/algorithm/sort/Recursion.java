@@ -1,6 +1,7 @@
 package sun.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * Created by sunyamorn on 4/12/16.
@@ -42,6 +43,13 @@ public class Recursion {
             return x * power(x, n - 1);
     }
 
+
+
+    // Determine if a string is a palindrome
+    public static boolean isPalindrome(char[] s, int start, int end) {
+        return start >= end || s[start] == s[end] && isPalindrome(s, ++start, --end);
+    }
+
     public static void main(String[] args) {
 
         System.out.println(Recursion.factorial(3));
@@ -53,5 +61,9 @@ public class Recursion {
         System.out.println(Arrays.toString(a));
 
         System.out.println(power(2, 3));
+
+        String s = "racecar";
+        System.out.println(isPalindrome(s.toCharArray(), 0, s.length() - 1));
+
     }
 }
