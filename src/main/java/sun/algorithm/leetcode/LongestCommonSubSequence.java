@@ -115,9 +115,9 @@ public class LongestCommonSubSequence {
 
     /**
      * 递归求解
-     * 0                           if i == 0 or j == 0
+     *              0                           if i == 0 or j == 0
      * c[i,j] =     c[i-1, j-1] + 1             if i,j > 0 and x[i] = y[j]
-     * max(c[i,j-1], c[i-1,j])     if i,j > 0 and x[i] != y[i]
+     *              max(c[i,j-1], c[i-1,j])     if i,j > 0 and x[i] != y[i]
      *
      * @param x
      * @param y
