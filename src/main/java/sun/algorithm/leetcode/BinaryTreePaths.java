@@ -18,7 +18,7 @@ import java.util.*;
  * All root-to-leaf paths are:
  * ["1->2->5", "1->3"]
  * <p>
- * Reference <a href="https://leetcode.com/problems/binary-tree-paths/description/"></a>
+ * Reference: <a href="https://leetcode.com/problems/binary-tree-paths/description/">Binary Tree Paths</a>
  *
  * @author hufeng
  * @version BinaryTreePaths.java, v 0.1 19/10/2017 8:57 PM Exp $

@@ -7,7 +7,7 @@ package sun.algorithm.leetcode;
 /**
  * Write a function to find the longest common prefix string amongst an array of strings.
  * <p>
- * https://leetcode.com/problems/longest-common-prefix/solution/
+ * Reference: <a href="https://leetcode.com/problems/longest-common-prefix/solution/">Longest Common Prefix</a>
  *
  * @author hufeng
  * @version $Id: LongestCommonPrefix, v0.1 2017年08月24日 8:52 PM hufeng Exp $

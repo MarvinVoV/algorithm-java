@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Implement atoi to convert a string to an integer.
- * Reference <a href="https://leetcode.com/problems/string-to-integer-atoi/description/">String to Integer</a>
+ * Reference: <a href="https://leetcode.com/problems/string-to-integer-atoi/description/">String to Integer</a>
  *
  * @author hufeng
  * @version StringToInteger.java, v 0.1 17/10/2017 9:35 PM Exp $
