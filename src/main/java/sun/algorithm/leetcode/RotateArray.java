@@ -23,7 +23,15 @@ import java.util.Arrays;
 public class RotateArray {
 
     /**
-     * Reset directly.
+     * Using extra array. [Accepted]
+     * <p>
+     * We use an extra array in which we place every element of the array in the correct position. the number at index i
+     * in the original array is placed at the index (i + k). Then, we copy the new array to the original one.
+     * <p>
+     * Complexity Analysis:
+     * 1. Time complexity: O(n). One pass is used to put the numbers in the new array. And another pass to copy the new
+     * array to the original one.
+     * 2. Space complexity: O(n). Another array of the same size if used.
      * <p>
      * This runtime beats only 9.95% java submissions. Terribly.
      *
@@ -39,18 +47,13 @@ public class RotateArray {
             return;
         }
 
-        if (k > nums.length) {
-            k = k % nums.length; // several circles
+        int[] a = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            a[(i + k) % nums.length] = nums[i];
         }
 
-        int[] copyNums = new int[nums.length];
-        System.arraycopy(nums, 0, copyNums, 0, nums.length);
-        for (int i = 0; i < k; i++) {
-            nums[i] = copyNums[nums.length - k + i];
-        }
-
-        for (int i = k, j = 0; i < nums.length; i++, j++) {
-            nums[i] = copyNums[j];
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = a[i];
         }
     }
 
@@ -94,6 +97,103 @@ public class RotateArray {
             i++;
         }
     }
+
+    /**
+     * Using Cyclic Replacements. The authoritative answer.
+     * <p>
+     * Complexity analysis:
+     * 1. Time complexity: O(n). Only one pass is used.
+     * 2. Space complexity: O(1). Constant extra space is used.
+     *
+     * @param nums
+     * @param k
+     */
+    public static void rotateMethodTwoOptimizing(int[] nums, int k) {
+        k = k % nums.length;
+        int count = 0;
+        for (int start = 0; count < nums.length; start++) {
+            int current = start;
+            int prev = nums[start];
+            do {
+                int next = (current + k) % nums.length;
+                int temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+                current = next;
+                count++;
+            } while (start != current);
+        }
+    }
+
+
+    /**
+     * Approach#1 Brute Force
+     * <p>
+     * The simplest approach is to rotate all the elements of the array in k steps by rotating the elements by 1 unit
+     * in each step.
+     * <p>
+     * Complexity Analysis
+     * 1. Time Complexity: O(n * k). All the numbers are shifted by one step(O(n)) k times(O(k)).
+     * 2. Space complexity: O(1). No extra space is used.
+     *
+     * @param nums
+     * @param k
+     */
+    public static void rotateBruteForce(int[] nums, int k) {
+        int temp, previous;
+        for (int i = 0; i < k; i++) {
+            previous = nums[nums.length - 1];
+            for (int j = 0; j < nums.length; j++) {
+                temp = nums[j];
+                nums[j] = previous;
+                previous = temp;
+            }
+        }
+    }
+
+
+    /**
+     * Using Reverse [Accepted]
+     * <p>
+     * This approach is based on the fact that when we rotate the array k times, k elements from the back end of the
+     * array come to the front and rest of the elements from the front shift backwards.
+     * <p>
+     * In this approach, we firstly reverse all the elements of the array. Then, reversing the first k elements followed
+     * by reversing the rest n-k elements gives us the required result.
+     * let n =7, k = 3
+     * <p>
+     * Original List                    : 1 2 3 4 5 6 7
+     * After reversing all numbers      : 7 6 5 4 3 2 1
+     * After reversing first k numbers  : 5 6 7 4 3 2 1
+     * After revering last n-k numbers  : 5 6 7 1 2 3 4 --> Result
+     *
+     * @param nums
+     * @param k
+     */
+    public static void rotateUsingReverse(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    /**
+     * Reverse array
+     *
+     * @param nums
+     * @param start
+     * @param end
+     */
+    private static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
 
     @Test
     public void testNormalCase() {
@@ -152,4 +252,27 @@ public class RotateArray {
         System.out.println(Arrays.toString(nums)); // should be [4,5,6,1,2,3]
     }
 
+    @Test
+    public void testBruteForce() {
+        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int k = 3;
+        rotateBruteForce(nums, k);
+        System.out.println(Arrays.toString(nums));
+    }
+
+    @Test
+    public void testCycleReplacements() {
+        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int k = 3;
+        rotateMethodTwoOptimizing(nums, k);
+        System.out.println(Arrays.toString(nums));
+    }
+
+    @Test
+    public void testUsingReverse() {
+        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+        int k = 3;
+        rotateUsingReverse(nums, k);
+        System.out.println(Arrays.toString(nums));
+    }
 }
