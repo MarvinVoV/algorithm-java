@@ -1,5 +1,10 @@
 package sun.algorithm.tree.binarySearchTree;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * <pre>
  *                   15
@@ -27,6 +32,18 @@ public class BinarySearchTree {
 
         Node(int x) {
             val = x;
+        }
+
+        Node addLeft(Node node) {
+            this.left = node;
+            node.parent = this;
+            return this;
+        }
+
+        Node addRight(Node node) {
+            this.right = node;
+            node.parent = this;
+            return this;
         }
     }
 
@@ -137,8 +154,101 @@ public class BinarySearchTree {
             y.right = z;
         }
     }
-    // todo delete operation
+
+    /**
+     * Delete node z from bst.
+     * Three Case:
+     * 1. target node has no children.
+     * 2. target node has one child.
+     * 3. target node has two children.
+     *
+     * @param root bst
+     * @param z    target node which would be delete.
+     */
+    public Node treeDelete(Node root, Node z) {
+        Node y; // Determine a node y to splice out.
+        if (z.left == null || z.right == null) {  // target node has at most 1 child.
+            y = z;
+        } else { // target node has two children.
+            y = treeSuccessor(z);
+        }
+
+        Node x; // x is set to the non-nil child of y, or to nil if y has no children.
+        if (y.left != null) {
+            x = y.left;
+        } else {
+            x = y.right;
+        }
+        if (x != null) {
+            x.parent = y.parent;
+        }
+        if (y.parent == null) {
+            root = x;
+        } else if (y == y.parent.left) {
+            y.parent.left = x;
+        } else {
+            y.parent.right = x;
+        }
+        // Finally, if the successor of z was the node spliced out, y's key and satellite data are moved to z,
+        // overwriting the previous key and satellite data.
+        if (y != z) {
+            z.val = y.val;
+        }
+        return y;
+    }
 
 
+    private Node root;
+
+    @Before
+    public void buildBinarySearchTree() {
+
+        /**
+         * <pre>
+         *                   15
+         *                 /    \
+         *                5      16
+         *               / \       \
+         *              3   12     20
+         *                 / \     / \
+         *                10  13  18 23
+         *               /
+         *              6
+         *               \
+         *                7
+         * </pre>
+         */
+        root = new Node(15);
+        Node a = new Node(5);
+        Node b = new Node(16);
+        root.addLeft(a).addRight(b);
+
+
+        Node c = new Node(3);
+        Node d = new Node(12);
+        Node e = new Node(20);
+        Node f = new Node(10);
+        Node g = new Node(13);
+        Node h = new Node(18);
+        Node i = new Node(23);
+        Node j = new Node(6);
+        Node k = new Node(7);
+
+        b.addRight(e);
+        a.addLeft(c).addRight(d);
+        d.addLeft(f).addRight(g);
+        f.addLeft(j);
+        j.addRight(k);
+
+        e.addLeft(h);
+        e.addRight(i);
+    }
+
+    @Test
+    public void testSearch() {
+        int k = 13;
+        Node t = treeSearch(root, k);
+        assertEquals(13, t.val);
+    }
 
 }
