@@ -133,8 +133,12 @@ public class BinarySearchTree {
         return y;
     }
 
-
-    public void treeInsert(Node root, Node z) {
+    /**
+     * @param root bst
+     * @param z    node which will be inserted into the bst
+     * @return root node
+     */
+    public Node treeInsert(Node root, Node z) {
         Node y = null; // trailing pointer
         Node x = root;
         while (x != null) {
@@ -153,6 +157,28 @@ public class BinarySearchTree {
         } else {
             y.right = z;
         }
+        return root;
+    }
+
+    /**
+     * v replace u
+     *
+     * @param t
+     * @param u
+     * @param v
+     */
+    public Node transplant(Node t, Node u, Node v) {
+        if (u.parent == null) {
+            t = v;
+        } else if (u == u.parent.left) {
+            u.parent.left = v;
+        } else {
+            u.parent.right = v;
+        }
+        if (v != null) {
+            v.parent = u.parent;
+        }
+        return t;
     }
 
     /**
@@ -195,6 +221,24 @@ public class BinarySearchTree {
             z.val = y.val;
         }
         return y;
+    }
+
+    public void treeDelete2(Node t, Node z) {
+        if (z.left == null) {
+            transplant(t, z, z.right);
+        } else if (z.right == null) {
+            transplant(t, z, z.left);
+        } else {
+            Node y = treeMinimum(z.right);
+            if (y.parent != z) { // y is not z's right child
+                transplant(t, y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+            transplant(t, z, y);
+            y.left = z.left;
+            y.left.parent = y;
+        }
     }
 
 
@@ -251,4 +295,44 @@ public class BinarySearchTree {
         assertEquals(13, t.val);
     }
 
+    @Test
+    public void testSearchIterative() {
+        int k = 13;
+        Node t = iterativeTreeSearch(root, k);
+        assertEquals(13, t.val);
+    }
+
+    @Test
+    public void testFindMinimum() {
+        Node min = treeMinimum(root);
+        assertEquals(3, min.val);
+    }
+
+    @Test
+    public void testFindMaximum() {
+        Node max = treeMaximum(root);
+        assertEquals(23, max.val);
+    }
+
+    @Test
+    public void testFindSuccessor() {
+        Node target = treeSearch(root, 13); // 13's successor is 15
+        Node successor = treeSuccessor(target);
+        assertEquals(15, successor.val);
+    }
+
+    @Test
+    public void testInsertNode() {
+        Node z = new Node(11);
+        Node r = treeInsert(root, z);
+        Node p = treeSearch(r, 10);
+        assertEquals(11, p.right.val);
+    }
+
+    @Test
+    public void testDelete() {
+        Node z = treeSearch(root, 12);
+        treeDelete2(root, z);
+        assertEquals(13, treeSearch(root, 5).right.val);
+    }
 }
