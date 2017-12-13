@@ -2,6 +2,7 @@ package sun.algorithm.tree.redBlackTree;
 
 import org.junit.Before;
 import org.junit.Test;
+import sun.algorithm.tree.binarySearchTree.BinarySearchTree;
 
 /**
  * <a href="http://www.geeksforgeeks.org/red-black-tree-set-2-insert/">red-black-tree-set-2-insert</a>
@@ -35,6 +36,7 @@ public class RedBlackTree {
         Node right;
         Node parent;
         int color; // 0 black, 1 red
+        int originalColor;
 
         Node() {
         }
@@ -201,8 +203,81 @@ public class RedBlackTree {
         }
     }
 
+    /**
+     * Find the minimum key node
+     * O(h)
+     *
+     * @param node
+     * @return
+     */
+    public Node treeMinimum(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
 
 
+    public void rbDelete(Tree tree, Node z) {
+        Node y = z;
+        Node x = null;
+        y.originalColor = y.color;
+        if (z.left == null) {
+            x = z.right;
+            rbTransplant(tree, z, z.right);
+        } else if (z.right == null) {
+            x = z.left;
+            rbTransplant(tree, z, z.left);
+        } else {
+            y = treeMinimum(z.right); // y points to z's successor
+            y.originalColor = y.color;
+            x = y.right;
+            if (y.parent == z) {
+                x.parent = y;
+            } else {
+                rbTransplant(tree, y, y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+            rbTransplant(tree, x, y);
+            y.left = z.left;
+            y.left.parent = y;
+            y.color = z.color;
+        }
+        if (y.originalColor == 0) { // black
+            rbDeleteFixUp(tree, x);
+        }
+    }
+
+    public void rbDeleteFixUp(Tree tree, Node x) {
+        while (x != tree.root && x.color == 0) {
+            if (x == x.parent.left) {
+                Node w = x.parent.right;
+                if (w.color == 1) {
+                    w.color = 0;
+                    x.parent.color = 1;
+                    leftRotate(tree, x.parent);
+                    w = x.parent.right;
+                }
+                if (w.left.color == 0 && w.right.color == 0) {
+                    w.color= 1;
+                    x = x.parent;
+                } else {
+                    if (w.right.color == 0 && w.left.color == 0 && w.color == 1) {
+                        w = x.parent.right;
+                    }
+                    w.color = x.parent.color;
+                    x.parent.color = 0;
+                    w.right.color = 0;
+                    leftRotate(tree, x.parent);
+                    x = tree.root;
+                }
+            } else {
+                //
+            }
+        }
+        x.color = 0;
+    }
 
     @Test
     public void testInsert() {

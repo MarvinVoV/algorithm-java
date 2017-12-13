@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * <pre>
@@ -24,30 +25,6 @@ import static org.junit.Assert.assertEquals;
 
 public class BinarySearchTree {
 
-    class Node {
-        int val;
-        Node left;
-        Node right;
-        Node parent;
-
-        Node(int x) {
-            val = x;
-        }
-
-        Node addLeft(Node node) {
-            this.left = node;
-            node.parent = this;
-            return this;
-        }
-
-        Node addRight(Node node) {
-            this.right = node;
-            node.parent = this;
-            return this;
-        }
-    }
-
-
     /**
      * Search the node whose value is k recursively. return null if not found.
      * O(h)
@@ -56,14 +33,15 @@ public class BinarySearchTree {
      * @param k    target value
      * @return target node
      */
-    public Node treeSearch(Node node, int k) {
-        if (node == null || node.val == k) {
+    public Node search(Node node, int k) {
+        // Base Case: root is null or key is present at root
+        if (node == null || node.key == k) {
             return node;
         }
-        if (k < node.val) {
-            return treeSearch(node.left, k);
+        if (k < node.key) {
+            return search(node.left, k);
         }
-        return treeSearch(node.right, k);
+        return search(node.right, k);
     }
 
     /**
@@ -73,9 +51,9 @@ public class BinarySearchTree {
      * @param k    target value
      * @return target node
      */
-    public Node iterativeTreeSearch(Node node, int k) {
-        while (node != null && k != node.val) {
-            if (k < node.val) {
+    public Node iterativeSearch(Node node, int k) {
+        while (node != null && k != node.key) {
+            if (k < node.key) {
                 node = node.left;
             } else {
                 node = node.right;
@@ -89,9 +67,9 @@ public class BinarySearchTree {
      * O(h)
      *
      * @param node
-     * @return
+     * @return minimum key node
      */
-    public Node treeMinimum(Node node) {
+    public Node minimum(Node node) {
         while (node.left != null) {
             node = node.left;
         }
@@ -105,7 +83,7 @@ public class BinarySearchTree {
      * @param node
      * @return
      */
-    public Node treeMaximum(Node node) {
+    public Node maximum(Node node) {
         while (node.right != null) {
             node = node.right;
         }
@@ -115,50 +93,83 @@ public class BinarySearchTree {
 
     /**
      * Find node's successor
-     * 15's successor -> 17
-     * 13's successor -> 15
      *
-     * @param node
-     * @return
+     * @param x
+     * @return node's successor
      */
-    public Node treeSuccessor(Node node) {
-        if (node.right != null) {
-            return treeMinimum(node.right);
+    public Node successor(Node x) {
+        if (x.right != null) {
+            return minimum(x.right);
         }
-        Node y = node.parent;
-        while (y != null && node == y.right) {
-            node = y;
-            y = node.parent;
+        Node y = x.parent;
+        while (y != null && x == y.right) {
+            x = y;
+            y = x.parent;
         }
         return y;
     }
 
     /**
      * @param root bst
-     * @param z    node which will be inserted into the bst
+     * @param key  add new node whose key is the value.
      * @return root node
      */
-    public Node treeInsert(Node root, Node z) {
-        Node y = null; // trailing pointer
+    public Node insert(Node root, int key) {
+        // If the tree is empty, return a new node
+        if (root == null) {
+            root = new Node(key);
+            return root;
+        }
+        Node z = new Node(key); // new node
+        Node y = null; // trailing pointer always pointer to x'parent
         Node x = root;
+
+        // move down the tree to find z's parent
         while (x != null) {
             y = x;
-            if (z.val < x.val) {
+            if (z.key < x.key) {
                 x = x.left;
             } else {
                 x = x.right;
             }
         }
+        // insert node z
         z.parent = y;
-        if (y == null) {
-            root = z; // empty T
-        } else if (z.val < y.val) {
+        if (z.key < y.key) {
             y.left = z;
         } else {
             y.right = z;
         }
         return root;
     }
+
+    /**
+     * Recursive implementation
+     *
+     * @param root
+     * @param key
+     * @return
+     */
+    public Node insertRecursive(Node root, int key) {
+        root = insertRec(root, key);
+        return root;
+    }
+
+    private Node insertRec(Node root, int key) {
+        if (root == null) {
+            root = new Node(key);
+            return root;
+        }
+
+        if (key < root.key) {
+            root.left = insertRec(root.left, key);
+        } else if (key > root.key) {
+            root.right = insertRec(root.right, key);
+        }
+        // return the (unchanged) node pointer
+        return root;
+    }
+
 
     /**
      * v replace u
@@ -182,65 +193,58 @@ public class BinarySearchTree {
     }
 
     /**
-     * Delete node z from bst.
-     * Three Case:
-     * 1. target node has no children.
-     * 2. target node has one child.
-     * 3. target node has two children.
+     * Delete node z in the bst
      *
-     * @param root bst
-     * @param z    target node which would be delete.
+     * @param root
+     * @param z
      */
-    public Node treeDelete(Node root, Node z) {
-        Node y; // Determine a node y to splice out.
-        if (z.left == null || z.right == null) {  // target node has at most 1 child.
-            y = z;
-        } else { // target node has two children.
-            y = treeSuccessor(z);
-        }
-
-        Node x; // x is set to the non-nil child of y, or to nil if y has no children.
-        if (y.left != null) {
-            x = y.left;
-        } else {
-            x = y.right;
-        }
-        if (x != null) {
-            x.parent = y.parent;
-        }
-        if (y.parent == null) {
-            root = x;
-        } else if (y == y.parent.left) {
-            y.parent.left = x;
-        } else {
-            y.parent.right = x;
-        }
-        // Finally, if the successor of z was the node spliced out, y's key and satellite data are moved to z,
-        // overwriting the previous key and satellite data.
-        if (y != z) {
-            z.val = y.val;
-        }
-        return y;
-    }
-
-    public void treeDelete2(Node t, Node z) {
-        if (z.left == null) {
-            transplant(t, z, z.right);
-        } else if (z.right == null) {
-            transplant(t, z, z.left);
-        } else {
-            Node y = treeMinimum(z.right);
-            if (y.parent != z) { // y is not z's right child
-                transplant(t, y, y.right);
+    public void delete(Node root, Node z) {
+        if (z.left == null) {                                   // case 1
+            transplant(root, z, z.right);
+        } else if (z.right == null) {                           // case 2
+            transplant(root, z, z.left);
+        } else {  // z has two children
+            Node y = minimum(z.right);
+            if (y.parent != z) { // y is not z's right child    // case 3.1
+                transplant(root, y, y.right);
                 y.right = z.right;
                 y.right.parent = y;
             }
-            transplant(t, z, y);
+            transplant(root, z, y);                             // case 3.2
             y.left = z.left;
             y.left.parent = y;
         }
     }
 
+    /**
+     * Using In-order Traversal
+     * Time Complexity: O(n)
+     *
+     * @param root
+     * @return
+     */
+    public boolean isBinarySearchTree(Node root) {
+        if (root == null) {
+            return false;
+        }
+
+        return isBST(root, null);
+    }
+
+    private boolean isBST(Node node, Node prev) {
+        if (node == null) {
+            return true;
+        }
+        if (!isBST(node.left, prev)) {
+            return false;
+        }
+        // allows only distinct values node
+        if (prev != null && node.key <= prev.key) {
+            return false;
+        }
+        prev = node;
+        return isBST(node.right, prev);
+    }
 
     private Node root;
 
@@ -265,7 +269,7 @@ public class BinarySearchTree {
         root = new Node(15);
         Node a = new Node(5);
         Node b = new Node(16);
-        root.addLeft(a).addRight(b);
+        root.addLeftChild(a).addRightChild(b);
 
 
         Node c = new Node(3);
@@ -278,61 +282,65 @@ public class BinarySearchTree {
         Node j = new Node(6);
         Node k = new Node(7);
 
-        b.addRight(e);
-        a.addLeft(c).addRight(d);
-        d.addLeft(f).addRight(g);
-        f.addLeft(j);
-        j.addRight(k);
+        b.addRightChild(e);
+        a.addLeftChild(c).addRightChild(d);
+        d.addLeftChild(f).addRightChild(g);
+        f.addLeftChild(j);
+        j.addRightChild(k);
 
-        e.addLeft(h);
-        e.addRight(i);
+        e.addLeftChild(h);
+        e.addRightChild(i);
     }
 
     @Test
     public void testSearch() {
         int k = 13;
-        Node t = treeSearch(root, k);
-        assertEquals(13, t.val);
+        Node t = search(root, k);
+        assertEquals(13, t.key);
     }
 
     @Test
     public void testSearchIterative() {
         int k = 13;
-        Node t = iterativeTreeSearch(root, k);
-        assertEquals(13, t.val);
+        Node t = iterativeSearch(root, k);
+        assertEquals(13, t.key);
     }
 
     @Test
     public void testFindMinimum() {
-        Node min = treeMinimum(root);
-        assertEquals(3, min.val);
+        Node min = minimum(root);
+        assertEquals(3, min.key);
     }
 
     @Test
     public void testFindMaximum() {
-        Node max = treeMaximum(root);
-        assertEquals(23, max.val);
+        Node max = maximum(root);
+        assertEquals(23, max.key);
     }
 
     @Test
     public void testFindSuccessor() {
-        Node target = treeSearch(root, 13); // 13's successor is 15
-        Node successor = treeSuccessor(target);
-        assertEquals(15, successor.val);
+        Node target = search(root, 13); // 13's successor is 15
+        Node successor = successor(target);
+        assertEquals(15, successor.key);
     }
 
     @Test
     public void testInsertNode() {
-        Node z = new Node(11);
-        Node r = treeInsert(root, z);
-        Node p = treeSearch(r, 10);
-        assertEquals(11, p.right.val);
+        Node r = insert(root, 11);
+        Node p = search(r, 10);
+        assertEquals(11, p.right.key);
     }
 
     @Test
     public void testDelete() {
-        Node z = treeSearch(root, 12);
-        treeDelete2(root, z);
-        assertEquals(13, treeSearch(root, 5).right.val);
+        Node z = search(root, 12);
+        delete(root, z);
+        assertEquals(13, search(root, 5).right.key);
+    }
+
+    @Test
+    public void testIsBST() {
+        assertTrue(isBinarySearchTree(root));
     }
 }
