@@ -113,85 +113,86 @@ public class RedBlackTree {
         y.parent = x;
     }
 
-
-    public void rbInsert(Tree tree, Node z) {
-        // Insert in the tree in the usual way
-        Node y = null;
-        Node x = tree.root;
-        while (x != null) {
-            y = x;
-            if (z.val < x.val) {
-                x = x.left;
-            } else {
-                x = x.right;
-            }
-        }
-        z.parent = y;
-        if (y == null) {
-            tree.root = z;
-        } else {
-            if (z.val < y.val) {
-                y.left = z;
-            } else {
-                y.right = z;
-            }
-        }
-        z.left = null;
-        z.right = null;
-
-        // Now restore the red-black property
-        z.color = 1; // set color as red
-        rbInsertFixUp(tree, z);
-    }
-
-
-    public void rbInsertFixUp(Tree tree, Node z) {
-        // nil is considered as Black
-        while (z.parent != null && z.parent.color == 1) { // z.parent.color == RED
-            Node y = null;
-            if (z.parent == z.parent.parent.left) {
-                y = z.parent.parent.right; // z's uncle
-                if (y.color == 1) { // y.color == RED                   // case 1
-                    z.parent.color = 0; // z.parent.color = BLACK       // case 1
-                    y.color = 0;                                        // case 1
-                    z.parent.parent.color = 1; //RED                    // case 1
-                    z = z.parent.parent;                                // case 1
-                } else {
-                    // y is a black node
-                    if (z == z.parent.right) {
-                        // and x is to the right
-                        // case 2 - move z up and rotate
-                        z = z.parent;                                   // case 2
-                        leftRotate(tree, z);                            // case 2
-                    }
-                    // case 3
-                    z.parent.color = 0;                                 // case 3
-                    z.parent.parent.color = 1;                          // case 3
-                    rightRotate(tree, z.parent.parent);                 // case 3
-                }
-            } else {
-                y = z.parent.parent.left;
-                // nil is considered as Black
-                if (y != null && y.color == 1) {
-                    z.parent.color = 0;
-                    y.color = 0;
-                    z.parent.parent.color = 1;
-                    z = z.parent.parent;
-                } else {
-                    if (z == z.parent.left) {
-                        z = z.parent;
-                        rightRotate(tree, z);
-                    }
-                    // case 3
-                    z.parent.color = 0;
-                    z.parent.parent.color = 1;
-                    leftRotate(tree, z.parent.parent);
-                }
-            }
-        }
-        tree.root.color = 0;
-    }
-
+//
+//    public void rbInsert(Tree tree, Node z) {
+//        // Insert in the tree in the usual way
+//        this.inser
+//        Node y = null;
+//        Node x = tree.root;
+//        while (x != null) {
+//            y = x;
+//            if (z.val < x.val) {
+//                x = x.left;
+//            } else {
+//                x = x.right;
+//            }
+//        }
+//        z.parent = y;
+//        if (y == null) {
+//            tree.root = z;
+//        } else {
+//            if (z.val < y.val) {
+//                y.left = z;
+//            } else {
+//                y.right = z;
+//            }
+//        }
+//        z.left = null;
+//        z.right = null;
+//
+//        // Now restore the red-black property
+//        z.color = 1; // set color as red
+//        rbInsertFixUp(tree, z);
+//    }
+//
+//
+//    public void rbInsertFixUp(Tree tree, Node z) {
+//        // nil is considered as Black
+//        while (z.parent != null && z.parent.color == 1) { // z.parent.color == RED
+//            Node y = null;
+//            if (z.parent == z.parent.parent.left) {
+//                y = z.parent.parent.right; // z's uncle
+//                if (y.color == 1) { // y.color == RED                   // case 1
+//                    z.parent.color = 0; // z.parent.color = BLACK       // case 1
+//                    y.color = 0;                                        // case 1
+//                    z.parent.parent.color = 1; //RED                    // case 1
+//                    z = z.parent.parent;                                // case 1
+//                } else {
+//                    // y is a black node
+//                    if (z == z.parent.right) {
+//                        // and x is to the right
+//                        // case 2 - move z up and rotate
+//                        z = z.parent;                                   // case 2
+//                        leftRotate(tree, z);                            // case 2
+//                    }
+//                    // case 3
+//                    z.parent.color = 0;                                 // case 3
+//                    z.parent.parent.color = 1;                          // case 3
+//                    rightRotate(tree, z.parent.parent);                 // case 3
+//                }
+//            } else {
+//                y = z.parent.parent.left;
+//                // nil is considered as Black
+//                if (y != null && y.color == 1) {
+//                    z.parent.color = 0;
+//                    y.color = 0;
+//                    z.parent.parent.color = 1;
+//                    z = z.parent.parent;
+//                } else {
+//                    if (z == z.parent.left) {
+//                        z = z.parent;
+//                        rightRotate(tree, z);
+//                    }
+//                    // case 3
+//                    z.parent.color = 0;
+//                    z.parent.parent.color = 1;
+//                    leftRotate(tree, z.parent.parent);
+//                }
+//            }
+//        }
+//        tree.root.color = 0;
+//    }
+//
 
     public void rbTransplant(Tree tree, Node u, Node v) {
         if (u.parent == null) {
@@ -278,23 +279,23 @@ public class RedBlackTree {
         }
         x.color = 0;
     }
-
-    @Test
-    public void testInsert() {
-        Tree tree = new Tree();
-        Node root = new Node(10);
-        root.color = 0; // black
-        tree.root = root;
-
-
-        Node node2 = new Node(20);
-        rbInsert(tree, node2);
-
-        Node node3 = new Node(30);
-        rbInsert(tree, node3);
-
-        Node node4 = new Node(15);
-        rbInsert(tree, node4);
-        System.out.println(tree.root);
-    }
+//
+//    @Test
+//    public void testInsert() {
+//        Tree tree = new Tree();
+//        Node root = new Node(10);
+//        root.color = 0; // black
+//        tree.root = root;
+//
+//
+//        Node node2 = new Node(20);
+//        rbInsert(tree, node2);
+//
+//        Node node3 = new Node(30);
+//        rbInsert(tree, node3);
+//
+//        Node node4 = new Node(15);
+//        rbInsert(tree, node4);
+//        System.out.println(tree.root);
+//    }
 }

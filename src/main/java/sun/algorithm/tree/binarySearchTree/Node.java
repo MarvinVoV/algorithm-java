@@ -7,37 +7,18 @@ package sun.algorithm.tree.binarySearchTree;
  * @version Node.java, v 0.1 14/12/2017 12:22 AM Exp $
  */
 
-public class Node {
-    int key;
-    Node left;
-    Node right;
-    Node parent;
+public class Node<T extends Comparable<T>> {
+    protected T key = null;
+    protected Node<T> parent = null;
+    protected Node<T> left = null;
+    protected Node<T> right = null;
 
-    Color color;
-
-    Color originalColor;
-
-    Node() {
+    protected Node() {
     }
 
-    Node(int key) {
+    protected Node(Node<T> parent, T key) {
+        this.parent = parent;
         this.key = key;
     }
 
-    enum Color {
-        RED, BLACK
-    }
-
-
-    public Node addLeftChild(Node node) {
-        this.left = node;
-        node.parent = this;
-        return this;
-    }
-
-    public Node addRightChild(Node node) {
-        this.right = node;
-        node.parent = this;
-        return this;
-    }
 }

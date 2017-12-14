@@ -23,6 +23,11 @@ package sun.algorithm.tree.binarySearchTree;
 
 public class RedBlackTree extends BinarySearchTree {
 
+
+    public RBNode getRoot() {
+        return (RBNode)this.root;
+    }
+
     /**
      * <pre>
      *      x                          y
@@ -32,28 +37,139 @@ public class RedBlackTree extends BinarySearchTree {
      *      b   r                  a   b
      * </pre>
      *
-     * @param tree
      * @param x
      */
-    public void leftRotate(Tree tree, Node x) {
-        Node y = x.right;
-        x.right = y.left;   // turn y's left subtree into x's right subtree
+    protected void leftRotate(RBNode x) {
+        RBNode y = (RBNode) x.right;
+        assert y != null; // since the leaves of a red-black tree are empty, they cannot become internal nodes.
+        x.right = y.left;
         if (y.left != null) {
             y.left.parent = x;
         }
-        y.parent = x.parent; // y's new parent was x's parent
+        y.parent = x.parent;
         // Set the parent to point to y instead of x
         // First see whether we're at the root.
         if (x.parent == null) { // empty tree
-            tree.root = y;
+            this.root = y;
+        } else if (x.parent.left == x) {
+            x.parent.left = y;
         } else {
-            if (x.parent.left == x) {
-                x.parent.left = y;
-            } else {
-                x.parent.right = y;
-            }
+            x.parent.right = y;
         }
         y.left = x; // put x on y's left
         x.parent = y;
     }
+
+    /**
+     * <pre>
+     *      y                           x
+     *     / \      right-rotate       / \
+     *    x   r     ----------->      a   y
+     *   / \                             / \
+     *  a   b                           b   r
+     * </pre>
+     *
+     * @param y
+     */
+    protected void rightRotate(RBNode y) {
+        RBNode x = (RBNode) y.left;
+        assert x != null;
+        y.left = x.right;
+        if (x.right != null) {
+            x.right.parent = y;
+        }
+        x.parent = y.parent;
+        if (y.parent == null) {
+            this.root = x;
+        } else if (y.parent.left == y) {
+            y.parent.left = x;
+        } else {
+            y.parent.right = x;
+        }
+        x.right = y;
+        y.parent = x;
+    }
+
+//
+//    public void insertNode(RBNode z) {
+//        // Insert in the tree in the usual way
+//        this.insert();
+//
+//        RBNode y = null;
+//        RBNode x =
+//        while (x != null) {
+//            y = x;
+//            if (z.val < x.val) {
+//                x = x.left;
+//            } else {
+//                x = x.right;
+//            }
+//        }
+//        z.parent = y;
+//        if (y == null) {
+//            tree.root = z;
+//        } else {
+//            if (z.val < y.val) {
+//                y.left = z;
+//            } else {
+//                y.right = z;
+//            }
+//        }
+//        z.left = null;
+//        z.right = null;
+//
+//        // Now restore the red-black property
+//        z.color = 1; // set color as red
+//        rbInsertFixUp(tree, z);
+//    }
+//
+//
+//    public void rbInsertFixUp(sun.algorithm.tree.redBlackTree.RedBlackTree.Tree tree, sun.algorithm.tree.redBlackTree.RedBlackTree.Node z) {
+//        // nil is considered as Black
+//        while (z.parent != null && z.parent.color == 1) { // z.parent.color == RED
+//            sun.algorithm.tree.redBlackTree.RedBlackTree.Node y = null;
+//            if (z.parent == z.parent.parent.left) {
+//                y = z.parent.parent.right; // z's uncle
+//                if (y.color == 1) { // y.color == RED                   // case 1
+//                    z.parent.color = 0; // z.parent.color = BLACK       // case 1
+//                    y.color = 0;                                        // case 1
+//                    z.parent.parent.color = 1; //RED                    // case 1
+//                    z = z.parent.parent;                                // case 1
+//                } else {
+//                    // y is a black node
+//                    if (z == z.parent.right) {
+//                        // and x is to the right
+//                        // case 2 - move z up and rotate
+//                        z = z.parent;                                   // case 2
+//                        leftRotate(tree, z);                            // case 2
+//                    }
+//                    // case 3
+//                    z.parent.color = 0;                                 // case 3
+//                    z.parent.parent.color = 1;                          // case 3
+//                    rightRotate(tree, z.parent.parent);                 // case 3
+//                }
+//            } else {
+//                y = z.parent.parent.left;
+//                // nil is considered as Black
+//                if (y != null && y.color == 1) {
+//                    z.parent.color = 0;
+//                    y.color = 0;
+//                    z.parent.parent.color = 1;
+//                    z = z.parent.parent;
+//                } else {
+//                    if (z == z.parent.left) {
+//                        z = z.parent;
+//                        rightRotate(tree, z);
+//                    }
+//                    // case 3
+//                    z.parent.color = 0;
+//                    z.parent.parent.color = 1;
+//                    leftRotate(tree, z.parent.parent);
+//                }
+//            }
+//        }
+//        tree.root.color = 0;
+//    }
+
+
 }
