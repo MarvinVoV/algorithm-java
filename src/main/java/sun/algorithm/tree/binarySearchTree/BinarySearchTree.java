@@ -67,17 +67,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
         return this.root;
     }
 
-    protected Node<T> insert(T value) {
-        if (value == null) {
-            return null;
-        }
-
-        Node<T> newNode = new Node<>(null, value);
-
+    protected void insertNode(Node<T> newNode) {
         if (root == null) {
             root = newNode;
             size++;
-            return newNode;
+            return;
         }
         Node<T> x = root;
         Node<T> y = null;  // trailing pointer always pointer to x'parent
@@ -98,6 +92,14 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
             y.right = newNode;
         }
         size++;
+    }
+
+    protected Node<T> insert(T value) {
+        if (value == null) {
+            return null;
+        }
+        Node<T> newNode = new Node<>(null, value);
+        insertNode(newNode);
         return newNode;
     }
 
@@ -271,7 +273,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
             transplant(node, node.left);                  // case 2
         } else { // node has two children
             Node<T> y = findMin(node.right);
-            if (y.parent != node) {                            // case 3.1 : y is not node's right child
+            if (y.parent != node) {                      // case 3.1 : y is not node's right child
                 transplant(y, y.right);
                 y.right = node.right;
                 y.right.parent = y;

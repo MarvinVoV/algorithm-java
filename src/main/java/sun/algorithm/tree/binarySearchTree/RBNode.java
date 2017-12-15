@@ -7,14 +7,17 @@ package sun.algorithm.tree.binarySearchTree;
  * @version RBNode.java, v 0.1 14/12/2017 5:57 PM Exp $
  */
 
-public class RBNode extends Node {
+public class RBNode<T extends Comparable<T>> extends Node<T> {
+
+    protected RBColor color;
 
     public RBNode() {
         super();
     }
 
-    RBColor color;
+    public RBNode(T key) {
+        this.key = key;
+    }
 
-    RBColor originalColor;
 
 }
