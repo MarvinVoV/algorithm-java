@@ -1,15 +1,24 @@
-package sun.algorithm.leetcode;
+package sun.algorithm.dp;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 1. 动态规划求最长公共子序列 <code>printLcs</code>
- * 2. 递归求最长公共子序列
+ * 最长公共子序列问题 Longest common subsequence problem
  * <p>
+ * 最优子结构: 令X[1...m]和Y[1...n]为两个序列，Z[1...k]为X和Y的任意LCS
+ * 1. 如果 x[m] == y[n], 则 Z[k]=X[m]=Y[n]且Z[k-1]是X[m-1]和Y[n-1]的一个LCS
+ * 2. 如果 x[m] != y[n], 则 Z[k] != X[m] 意味着Z是X[1...m-1]和Y的一个LCS
+ * 3. 如果 x[m] != y[n], 则 Z[k] != Y[n] 意味着Z是Y[1...n-1]和X的一个LCS
+ * <p>
+ * 得出如下公式
+ * <pre>
+ *              0              ,            (i=0 or j=0)
+ *     c[i,j] = c[i-1, j-1] + 1,            (i,j>0 & x[i]!=y[j])
+ *              max(c[i,j-1], c[i-1,j]),    (i,j>0 & x[i] != y[j])
+ * </pre>
  * <p>
  * https://www.ics.uci.edu/~eppstein/161/960229.html
- * http://www.sanfoundry.com/java-program-longest-common-substring-algorithm/
  * Created by marvin on 2017/07/25.
  */
 
@@ -36,8 +45,9 @@ public class LongestCommonSubSequence {
         int m = x.length;
         int n = y.length;
 
-        // let b[1..m, 1..n] and c[0..m, 0..n] be new table.
+        // 存储对应计算c[i,j]时所选择的子问题的最优解
         String[][] b = new String[m + 1][n + 1];
+        // 存储X[1...i]和Y[1...j]的LCS的长度
         int[][] c = new int[m + 1][n + 1];
 
         for (int i = 1; i <= m; i++) {
