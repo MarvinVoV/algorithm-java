@@ -8,7 +8,7 @@ package sun.algorithm.courses.datastructure.tree.bst;
  */
 
 public class Node<T extends Comparable<T>> {
-    protected T key = null;
+    public T key = null;
     protected Node<T> parent = null;
     protected Node<T> left = null;
     protected Node<T> right = null;

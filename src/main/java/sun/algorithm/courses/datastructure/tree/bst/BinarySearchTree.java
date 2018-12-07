@@ -150,14 +150,14 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
         return y;
     }
 
-    protected Node<T> getMin() {
+    public Node<T> getMin() {
         if (isEmpty()) {
             return null;
         }
         return findMin(this.root);
     }
 
-    protected Node<T> getMax() {
+    public Node<T> getMax() {
         if (isEmpty()) {
             return null;
         }
@@ -171,7 +171,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
      * @param value target value
      * @return target node
      */
-    protected Node<T> search(T value) {
+    public Node<T> search(T value) {
         if (value == null) {
             return null;
         }
@@ -201,7 +201,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
      * @param value target value
      * @return target node
      */
-    protected Node<T> searchRecursively(Node<T> node, T value) {
+    public Node<T> searchRecursively(Node<T> node, T value) {
         // Base case
         if (node == null || node.key.compareTo(value) == 0) {
             return node;
