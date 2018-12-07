@@ -8,6 +8,8 @@ import java.util.Arrays;
 import static junit.framework.TestCase.assertTrue;
 
 /**
+ * <a href="https://leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a>
+ *
  * @author hufeng
  * @version PartitionEqualSubsetSum.java, v 0.1 2018/12/7 11:25 PM Exp $
  */
