@@ -10,8 +10,6 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * <a href="https://leetcode.com/problems/move-zeroes/">Move Zeroes</a>
