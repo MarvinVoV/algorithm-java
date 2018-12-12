@@ -2,8 +2,8 @@ package sun.algorithm.tree.binarySearchTree;
 
 import org.junit.Before;
 import org.junit.Test;
-import sun.algorithm.courses.datastructure.tree.bst.BinarySearchTree;
-import sun.algorithm.courses.datastructure.tree.bst.Node;
+import sun.algorithm.courses.unclassified.BinarySearchTree;
+import sun.algorithm.courses.unclassified.Node;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package sun.algorithm.courses.datastructure.tree.bst;
+package sun.algorithm.courses.unclassified;
 
 /**
  * <a href="http://www.geeksforgeeks.org/red-black-tree-set-2-insert/">red-black-tree-set-2-insert</a>

@@ -1,358 +1,158 @@
+/**
+ * Alipay.com Inc.
+ * Copyright (c) 2004-2018 All Rights Reserved.
+ */
 package sun.algorithm.courses.datastructure.tree.bst;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
- * Binary Search Tree
- *
  * @author hufeng
- * @version BinarySearchTree.java, v 0.1 06/12/2017 11:37 PM Exp $
+ * @version $Id: BinarySearchTree.java, v 0.1 2018年12月12日 2:12 PM hufeng Exp $
+ * @see <a href="https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/"/>
  */
+public class BinarySearchTree {
+    class Node {
+        int  key;
+        Node left, right;
 
-public class BinarySearchTree<T extends Comparable<T>> implements ITree<T> {
-
-    protected Node<T> root = null;
-
-    protected int size = 0;
-
-    public BinarySearchTree() {
+        public Node(int item) {
+            key = item;
+            left = right = null;
+        }
     }
 
+    // Root of BST
+    Node root;
 
-    @Override
-    public boolean add(T value) {
-        return insert(value) != null;
+    BinarySearchTree() {
+        root = null;
     }
 
-
-    @Override
-    public T remove(T value) {
-        Node<T> node = search(value);
-        Node<T> nodeToDel = deleteNode(node);
-        return nodeToDel != null ? nodeToDel.key : null;
+    // This method mainly calls insertsRec()
+    public void insert(int key) {
+        root = insertRec(root, key);
     }
 
-    @Override
-    public void clear() {
-        this.root = null;
-        this.size = 0;
+    public void inorder() {
+        inorderRec(root);
     }
 
-    @Override
-    public boolean contains(T value) {
-        Node<T> node = search(value);
-        return node != null;
+    public void deleteKey(int key) {
+        root = deleteRec(root, key);
     }
 
-    @Override
-    public int size() {
-        return this.size;
-    }
-
-    @Override
-    public boolean validate() {
-        return isBST(root, null);
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.root == null;
-    }
-
-    ///////////////////// PUBLIC OPERATIONS ////////////////////////
-    protected Node<T> getRoot() {
-        return this.root;
-    }
-
-    protected void insertNode(Node<T> newNode) {
+    /**
+     * A recursive function to insert a new key in BST
+     *
+     * @param root bst root node
+     * @param key  target key
+     * @return bst root node
+     */
+    private Node insertRec(Node root, int key) {
+        // If the tree is empty, return a new node
         if (root == null) {
-            root = newNode;
-            size++;
-            return;
+            root = new Node(key);
+            return root;
         }
-        Node<T> x = root;
-        Node<T> y = null;  // trailing pointer always pointer to x'parent
-        // move down the tree to find z's parent
-        while (x != null) {
-            y = x;
-            if (newNode.key.compareTo(x.key) < 0) {
-                x = x.left;
-            } else {
-                x = x.right;
+        // Otherwise, recur down the tree
+        if (key < root.key) {
+            root.left = insertRec(root.left, key);
+        } else if (key > root.key) {
+            root.right = insertRec(root.right, key);
+        }
+        // Return the (unchanged) node pointer
+        return root;
+    }
+
+    private Node deleteRec(Node root, int key) {
+        // Base Case: If the tree is empty
+        if (root == null) return root;
+        if (key < root.key) {
+            root.left = deleteRec(root.left, key);
+        } else if (key > root.key) {
+            root.right = deleteRec(root.right, key);
+        } else { // If the key is same as root's key, then This is the node to be deleted.
+            // node with only one child or no child
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
             }
+
+            // node with two children: Get the inorder successor (smallest in the right subtree)
+            root.key = minValue(root.right);
+
+            // Delete the inorder successor
+            root.right = deleteRec(root.right, root.key);
         }
-        // insert newNode
-        newNode.parent = y;
-        if (newNode.key.compareTo(y.key) < 0) {
-            y.left = newNode;
-        } else {
-            y.right = newNode;
-        }
-        size++;
+        return root;
     }
 
-    protected Node<T> insert(T value) {
-        if (value == null) {
-            return null;
+    private int minValue(Node root) {
+        int min = root.key;
+        while (root.left != null) {
+            min = root.left.key;
+            root = root.left;
         }
-        Node<T> newNode = new Node<>(null, value);
-        insertNode(newNode);
-        return newNode;
-    }
-
-    /**
-     * Find the minimum key node
-     * O(h)
-     *
-     * @param node
-     * @return minimum key node
-     */
-    protected Node<T> findMin(Node<T> node) {
-        while (node.left != null) {
-            node = node.left;
-        }
-        return node;
+        return min;
     }
 
     /**
-     * Find the maximum key node
-     * O(h)
+     * A utility function to search a given key in BSF
      *
-     * @param node
+     * @param root
+     * @param key
      * @return
      */
-    protected Node<T> findMax(Node<T> node) {
-        while (node.right != null) {
-            node = node.right;
+    private Node search(Node root, int key) {
+        // Base Cases: root is null or key is present at root
+        if (root == null || root.key == key) {
+            return root;
         }
-        return node;
+        // Value is greater than root's key
+        if (key > root.key) {
+            return search(root.right, key);
+        }
+        // Value is less than root's key
+        return search(root.left, key);
     }
 
     /**
-     * Find node's successor
+     * A utility function to do inorder traversal of BST
      *
-     * @param node
-     * @return node's successor
+     * @param root
      */
-    public Node<T> findSuccessor(Node<T> node) {
-        if (node.right != null) {
-            return findMin(node.right);
-        }
-        Node x = node;
-        Node y = node.parent;
-        while (y != null && x == y.right) {
-            x = y;
-            y = x.parent;
-        }
-        return y;
-    }
-
-    public Node<T> getMin() {
-        if (isEmpty()) {
-            return null;
-        }
-        return findMin(this.root);
-    }
-
-    public Node<T> getMax() {
-        if (isEmpty()) {
-            return null;
-        }
-        return findMax(this.root);
-    }
-
-    /**
-     * Search the node whose value is k through the iterative way. return null if not found.
-     * O(h)
-     *
-     * @param value target value
-     * @return target node
-     */
-    public Node<T> search(T value) {
-        if (value == null) {
-            return null;
-        }
-
-        Node<T> node = this.root;
-        while (node != null && node.key.compareTo(value) != 0) {
-            if (value.compareTo(node.key) < 0) {
-                node = node.left;
-            } else {
-                node = node.right;
-            }
-        }
-        return node;
-    }
-
-    protected Node<T> searchRecursively(T value) {
-        if (value == null) {
-            return null;
-        }
-        return searchRecursively(this.root, value);
-    }
-
-    /**
-     * Search the node whose value is k recursively. return null if not found.
-     *
-     * @param node  node
-     * @param value target value
-     * @return target node
-     */
-    public Node<T> searchRecursively(Node<T> node, T value) {
-        // Base case
-        if (node == null || node.key.compareTo(value) == 0) {
-            return node;
-        }
-
-        if (value.compareTo(node.key) < 0) {
-            return searchRecursively(node.left, value);
-        }
-        return searchRecursively(node.right, value);
-    }
-
-
-    /**
-     * Recursive implementation
-     *
-     * @param node
-     * @param value
-     * @return
-     */
-    private Node<T> insertRec(Node<T> node, T value) {
-        if (node == null) {
-            node = new Node<>(null, value);
-            return node;
-        }
-
-        if (value.compareTo(node.key) < 0) {
-            node.left = insertRec(node.left, value);
-        } else if (value.compareTo(node.key) > 0) {
-            node.right = insertRec(node.right, value);
-        }
-        // return the (unchanged) node pointer
-        return node;
-    }
-
-
-    /**
-     * v replace u
-     *
-     * @param u
-     * @param v
-     */
-    protected void transplant(Node<T> u, Node<T> v) {
-        if (u.parent == null) {
-            this.root = v;
-        } else if (u == u.parent.left) {
-            u.parent.left = v;
-        } else {
-            u.parent.right = v;
-        }
-        if (v != null) {
-            v.parent = u.parent;
+    private void inorderRec(Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.println(root.key);
+            inorderRec(root.right);
         }
     }
 
-    /**
-     * Delete first occurrence of value in the tree.
-     *
-     * @param node
-     * @return
-     */
-    protected Node<T> deleteNode(Node<T> node) {
-        if (node == null) {
-            return null;
-        }
 
-        if (node.left == null) {
-            transplant(node, node.right);                 // case 1
-        } else if (node.right == null) {
-            transplant(node, node.left);                  // case 2
-        } else { // node has two children
-            Node<T> y = findMin(node.right);
-            if (y.parent != node) {                      // case 3.1 : y is not node's right child
-                transplant(y, y.right);
-                y.right = node.right;
-                y.right.parent = y;
-            }
-            transplant(node, y);                         // case 3.2: y is node's right child
-            y.left = node.left;
-            y.left.parent = y;
-        }
-        size--;
-        return node;
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        /* Let us create following BST
+              50
+           /     \
+          30      70
+         /  \    /  \
+       20   40  60   80 */
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+
+        tree.inorder();
+
+        System.out.println("\nDelete 20");
+        tree.deleteKey(20);
+        System.out.println("Inorder traversal of the modified tree");
+        tree.inorder();
     }
 
-    /**
-     * Using In-order Traversal
-     * Time Complexity: O(n)
-     *
-     * @param node
-     * @param prev
-     * @return
-     */
-    private boolean isBST(Node<T> node, Node<T> prev) {
-        if (node == null) {
-            return true;
-        }
-        if (!isBST(node.left, prev)) {
-            return false;
-        }
-        // allows only distinct values node
-        if (prev != null && node.key.compareTo(prev.key) <= 0) {
-            return false;
-        }
-        prev = node;
-        return isBST(node.right, prev);
-    }
-
-
-    @Override
-    public String toString() {
-        return TreePrinter.getString(this);
-    }
-
-
-    protected static class TreePrinter {
-
-        public static <T extends Comparable<T>> String getString(BinarySearchTree<T> tree) {
-            if (tree.root == null)
-                return "Tree has no nodes.";
-            return getString(tree.root, "", true);
-        }
-
-        private static <T extends Comparable<T>> String getString(Node<T> node, String prefix, boolean isTail) {
-            StringBuilder builder = new StringBuilder();
-
-            if (node.parent != null) {
-                String side = "left";
-                if (node.equals(node.parent.right))
-                    side = "right";
-                builder.append(prefix + (isTail ? "└── " : "├── ") + "(" + side + ") " + node.key + "\n");
-            } else {
-                builder.append(prefix + (isTail ? "└── " : "├── ") + node.key + "\n");
-            }
-            List<Node<T>> children = null;
-            if (node.left != null || node.right != null) {
-                children = new ArrayList<Node<T>>(2);
-                if (node.left != null)
-                    children.add(node.left);
-                if (node.right != null)
-                    children.add(node.right);
-            }
-            if (children != null) {
-                for (int i = 0; i < children.size() - 1; i++) {
-                    builder.append(getString(children.get(i), prefix + (isTail ? "    " : "│   "), false));
-                }
-                if (children.size() >= 1) {
-                    builder.append(getString(children.get(children.size() - 1), prefix + (isTail ? "    " : "│   "), true));
-                }
-            }
-
-            return builder.toString();
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package sun.algorithm.courses.datastructure.tree.bst;
+package sun.algorithm.courses.unclassified;
 
 /**
  * Binary Search Tree Node
