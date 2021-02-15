@@ -12,7 +12,7 @@ package algorithm.topics.datastructure.tree.bst;
  * <a href="https://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversa/"/>
  */
 public class ConstructFromPreorderTraversal {
-    class Node {
+    static class Node {
         int  data;
         Node left, right;
 

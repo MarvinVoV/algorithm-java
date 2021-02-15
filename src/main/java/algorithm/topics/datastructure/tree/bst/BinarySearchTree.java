@@ -10,8 +10,8 @@ package algorithm.topics.datastructure.tree.bst;
  * @see <a href="https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/"/>
  */
 public class BinarySearchTree {
-    class Node {
-        int  key;
+    public static class Node {
+        int key;
         Node left, right;
 
         public Node(int item) {
