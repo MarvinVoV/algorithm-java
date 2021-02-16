@@ -6,6 +6,7 @@ package algorithm.topics.datastructure.heap;
  * @author marvin
  * @version MinHeap.java, v 0.1 15/02/2021 10:01 下午 $
  * @link <a href="https://www.geeksforgeeks.org/binary-heap/"/>
+ * @link <a href="https://codegym.cc/groups/posts/min-heap-in-java"/>
  */
 public class MinHeap {
     /**
@@ -115,25 +116,25 @@ public class MinHeap {
      * A recursive method to heapify a subtree with the root at given index.
      * This method assumes that the subtrees is already heapified
      *
-     * @param i
+     * @param pos
      */
-    private void minHeapify(int i) {
-        if (isLeaf(i)) {
+    private void minHeapify(int pos) {
+        if (isLeaf(pos)) {
             return;
         }
 
-        int l = leftChild(i);
-        int r = rightChild(i);
+        int l = leftChild(pos);
+        int r = rightChild(pos);
 
-        int smallest = i;
+        int smallest = pos;
         if (array[l] < array[smallest]) {
             smallest = l;
         }
         if (array[r] < array[smallest]) {
             smallest = r;
         }
-        if (smallest != i) {
-            swap(smallest, i);
+        if (smallest != pos) {
+            swap(smallest, pos);
             minHeapify(smallest);
         }
     }
@@ -153,8 +154,8 @@ public class MinHeap {
     }
 
     public void minHeap() {
-        for (int i = ((size - 1) / 2); i >= 1; i--) {
-            minHeapify(i);
+        for (int pos = ((size - 1) / 2); pos >= 1; pos--) {
+            minHeapify(pos);
         }
     }
 
