@@ -5,6 +5,7 @@
   * [Queue implemented by array](src/main/java/algorithm/topics/datastructure/queue/QueueByArray.java)
   * [Queue implemented by linked list](src/main/java/algorithm/topics/datastructure/queue/QueueByLinkList.java)
   * [Deque](src/main/java/algorithm/topics/datastructure/queue)
+  * [Priority Queue implemented by linked list](src/main/java/algorithm/topics/datastructure/queue/PriorityQueueByLinkedList.java)
 * [Stack](src/main/java/algorithm/topics/datastructure/stack)
   * [Stack implemented by array](src/main/java/algorithm/topics/datastructure/stack/Stack.java)
 * [Heap](src/main/java/algorithm/topics/datastructure/heap)

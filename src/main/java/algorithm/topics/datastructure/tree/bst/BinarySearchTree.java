@@ -5,13 +5,15 @@
 package algorithm.topics.datastructure.tree.bst;
 
 /**
+ * {@index Binary Search Tree}
+ *
  * @author hufeng
  * @version $Id: BinarySearchTree.java, v 0.1 2018年12月12日 2:12 PM hufeng Exp $
  * @see <a href="https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/"/>
  */
 public class BinarySearchTree {
     public static class Node {
-        int key;
+        int  key;
         Node left, right;
 
         public Node(int item) {
