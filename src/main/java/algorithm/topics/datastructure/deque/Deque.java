@@ -5,12 +5,12 @@ package algorithm.topics.datastructure.deque;
  *
  * @author marvin
  * @version Deque.java, v 0.1 15/02/2021 4:26 下午 $
- * @link <a href="https://www.geeksforgeeks.org/implementation-deque-using-circular-array/"/>
+ * @see <a href="https://www.geeksforgeeks.org/implementation-deque-using-circular-array/"/>
  */
 public class Deque {
-    private static final int MAX = 100;
-    private int[] data;
-    private int front, rear;
+    private static final int   MAX = 100;
+    private              int[] data;
+    private              int   front, rear;
     private int size;
 
     private Deque() {
@@ -127,8 +127,6 @@ public class Deque {
         }
         return data[rear];
     }
-
-
 
 
 }

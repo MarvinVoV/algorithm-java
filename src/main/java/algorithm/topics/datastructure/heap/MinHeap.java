@@ -5,8 +5,8 @@ package algorithm.topics.datastructure.heap;
  *
  * @author marvin
  * @version MinHeap.java, v 0.1 15/02/2021 10:01 下午 $
- * @link <a href="https://www.geeksforgeeks.org/binary-heap/"/>
- * @link <a href="https://codegym.cc/groups/posts/min-heap-in-java"/>
+ * @see <a href="https://www.geeksforgeeks.org/binary-heap/"/>
+ * @see <a href="https://codegym.cc/groups/posts/min-heap-in-java"/>
  */
 public class MinHeap {
     /**
@@ -16,11 +16,11 @@ public class MinHeap {
     /**
      * max size of the heap
      */
-    private int capacity;
+    private int   capacity;
     /**
      * Current number of elements in the heap
      */
-    private int size;
+    private int   size;
 
     private MinHeap() {
     }
