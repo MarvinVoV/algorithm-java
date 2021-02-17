@@ -1,7 +1,7 @@
 package algorithm.topics.datastructure.queue;
 
 /**
- * Implementing Queue using array.
+ * {@index Queue implemented by array}
  *
  * @author marvin
  * @version QueueByArray.java, v 0.1 15/02/2021 5:32 下午 $

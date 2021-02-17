@@ -1,7 +1,8 @@
 package algorithm.topics.datastructure.stack;
 
 /**
- * Implementing stack using array.
+ * {@index Stack implemented by array}
+ * <p>
  * LIFO: Last In, First Out
  *
  * @author marvin
@@ -9,8 +10,8 @@ package algorithm.topics.datastructure.stack;
  * @link https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
  */
 public class Stack {
-    private int capacity;
-    private int top;
+    private int   capacity;
+    private int   top;
     private int[] data;
 
     private Stack() {

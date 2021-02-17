@@ -1,7 +1,7 @@
 package algorithm.topics.datastructure.deque;
 
 /**
- * Implementing Deque using circle array.
+ * {@index Deque implemented by circle array}
  *
  * @author marvin
  * @version Deque.java, v 0.1 15/02/2021 4:26 下午 $

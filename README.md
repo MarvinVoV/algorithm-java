@@ -12,6 +12,8 @@
   * [Min-Heap](src/main/java/algorithm/topics/datastructure/heap/MinHeap.java)
 * [Tree](src/main/java/algorithm/topics/datastructure/tree)
   * [Binary Search Tree](src/main/java/algorithm/topics/datastructure/tree/bst/BinarySearchTree.java)
+* [LRU](src/main/java/algorithm/topics/datastructure/lru) 
+  * [LRU Cache implemented by double linked list](src/main/java/algorithm/topics/datastructure/lru/LRUCache.java)
   
 ## Algorithm
 

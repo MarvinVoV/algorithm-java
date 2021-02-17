@@ -1,7 +1,7 @@
 package algorithm.topics.datastructure.queue;
 
 /**
- * Implementing Queue by link list.
+ * {@index Queue implemented by linked list}
  *
  * @author marvin
  * @version QueueByLinkList.java, v 0.1 15/02/2021 8:53 下午 $
@@ -9,7 +9,7 @@ package algorithm.topics.datastructure.queue;
  */
 public class QueueByLinkList {
     static class Node {
-        int key;
+        int  key;
         Node next;
 
         public Node(int key) {

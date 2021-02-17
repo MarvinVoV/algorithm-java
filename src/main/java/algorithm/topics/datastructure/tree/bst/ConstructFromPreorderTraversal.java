@@ -5,6 +5,7 @@
 package algorithm.topics.datastructure.tree.bst;
 
 /**
+ * {@index Construct the BST}
  * Given preorder traversal of a binary search tree, construct the BST
  *
  * @author hufeng

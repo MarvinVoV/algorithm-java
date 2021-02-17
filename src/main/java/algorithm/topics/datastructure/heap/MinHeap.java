@@ -1,7 +1,7 @@
 package algorithm.topics.datastructure.heap;
 
 /**
- * Base Min-heap
+ * {@index Min-heap}
  *
  * @author marvin
  * @version MinHeap.java, v 0.1 15/02/2021 10:01 下午 $
