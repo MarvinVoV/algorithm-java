@@ -39,30 +39,51 @@ public class PlusOne {
     }
 
     public static int[] plusOne2(int[] digits) {
+        int carry = 0;
+        int[] temp = new int[digits.length + 1];
+        for (int i = digits.length - 1; i >= 0; i--) {
+            int value = digits[i];
+            if (i == digits.length - 1) {
+                value = digits[i] + 1;
+            }
+            temp[i + 1] = (value + carry) % 10;
+            carry = (value + carry) / 10;
+        }
+        if (carry != 0) {
+            temp[0] = carry;
+            return temp;
+        }
+        return Arrays.copyOfRange(temp,1, temp.length);
+    }
 
+    public static int[] plusOne3(int[] digits) {
         int n = digits.length;
-        for (int i = n - 1; i >= 0; i--) {
-            if (digits[i] < 9) {
-                digits[i]++;
+        for (int i = n - 1; i >= 0; --i) {
+            if (digits[i] != 9) {
+                ++digits[i];
+                for (int j = i + 1; j < n; ++j) {
+                    digits[j] = 0;
+                }
                 return digits;
             }
-
-            digits[i] = 0;
         }
 
-        int[] newNumber = new int[n + 1];
-        newNumber[0] = 1;
-
-        return newNumber;
+        // digits 中所有的元素均为 9
+        int[] ans = new int[n + 1];
+        ans[0] = 1;
+        return ans;
     }
 
     public static void main(String[] args) {
-//        int[] nums = new int[]{1, 2, 3};
-//        int[] nums = new int[]{4, 3, 2, 1};
-//        int[] nums = new int[]{1, 0};
-//        int[] nums = new int[]{9};
-        int[] nums = new int[]{9, 9};
-        System.out.println(Arrays.toString(plusOne(nums)));
-        System.out.println(Arrays.toString(plusOne2(nums)));
+        int[][] nums = {
+                {1,2,3},
+                {4,3,2,1},
+                {1,0},
+                {9},
+                {9,9}
+        };
+        for (int i = 0; i < nums.length;i++) {
+            System.out.println(Arrays.toString(plusOne2(nums[i])));
+        }
     }
 }
