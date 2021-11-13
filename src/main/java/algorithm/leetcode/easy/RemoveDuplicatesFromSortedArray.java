@@ -55,6 +55,25 @@ public class RemoveDuplicatesFromSortedArray {
         return p + 1;
     }
 
+    public static int removeDup(int[] nums) {
+        int n = nums.length;
+        if (n == 0){
+            return 0;
+        }
+        int fast = 1, slow = 1;
+        while (fast < n) {
+            if (nums[fast] != nums[fast -1]) {
+                nums[slow] = nums[fast];
+                ++slow;
+            }
+            ++fast;
+        }
+        return slow;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(removeDup(new int[]{1,1,2}));
+    }
 
     private static void print(int[] nums, int len) {
         System.out.println(JSON.toJSONString(Arrays.copyOf(nums, len)));

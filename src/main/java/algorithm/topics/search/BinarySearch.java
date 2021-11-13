@@ -1,4 +1,4 @@
-package algorithm.topics.sort;
+package algorithm.topics.search;
 
 /**
  * Created by sunyamorn on 4/12/16.

@@ -1,4 +1,4 @@
-package algorithm.topics.sort;
+package algorithm.topics.datastructure.queue;
 
 import java.util.AbstractQueue;
 import java.util.Iterator;
