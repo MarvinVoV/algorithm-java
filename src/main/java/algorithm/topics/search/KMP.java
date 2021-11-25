@@ -47,8 +47,8 @@ public class KMP {
     }
 
     public static void main(String[] args) {
-        String target = "abeabc";
-        String pattern = "abc";
+        String target = "aaaaa";
+        String pattern = "bba";
         System.out.println(kmp(target, pattern));
     }
 }
