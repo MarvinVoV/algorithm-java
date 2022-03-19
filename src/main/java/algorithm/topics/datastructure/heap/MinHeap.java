@@ -1,165 +1,66 @@
 package algorithm.topics.datastructure.heap;
 
-/**
- * {@index Min-heap}
- *
- * @author marvin
- * @version MinHeap.java, v 0.1 15/02/2021 10:01 下午 $
- * @see <a href="https://www.geeksforgeeks.org/binary-heap/"/>
- * @see <a href="https://codegym.cc/groups/posts/min-heap-in-java"/>
- */
-public class MinHeap {
-    /**
-     * To store array of elements in heap
-     */
-    private int[] array;
-    /**
-     * max size of the heap
-     */
-    private int   capacity;
-    /**
-     * Current number of elements in the heap
-     */
-    private int   size;
-
-    private MinHeap() {
-    }
+public class MinHeap extends Heap {
 
     public MinHeap(int capacity) {
-        this.capacity = capacity;
-        this.array = new int[this.capacity];
-        this.size = 0;
+        super(capacity);
     }
 
-    /**
-     * Get the Parent index for the given index.
-     *
-     * @param i
-     * @return
-     */
-    public int parent(int i) {
-        return (i - 1) / 2;
-    }
-
-    /**
-     * Get the left Child index for given index.
-     *
-     * @param i
-     * @return
-     */
-    public int leftChild(int i) {
-        return 2 * i + 1;
-    }
-
-    /**
-     * Get the right Child index for the given index.
-     *
-     * @param i
-     * @return
-     */
-    public int rightChild(int i) {
-        return 2 * i + 2;
-    }
-
-    public boolean isFull() {
-        return this.size >= this.capacity;
-    }
-
-    public boolean isEmpty() {
-        return this.size < 0;
-    }
-
-    private boolean isLeaf(int i) {
-        return rightChild(i) >= size || leftChild(i) >= size;
-    }
-
-    private void swap(int a, int b) {
-        int tmp = this.array[a];
-        this.array[a] = this.array[b];
-        this.array[b] = tmp;
-    }
-
-    public boolean insert(int element) {
+    @Override
+    public boolean insert(int x) {
         if (isFull()) {
             return false;
         }
-        // First insert the new element at the end
-        array[size] = element;
-        int current = size;
+        int cur = size;
+        this.data[cur] = x;
 
-        // Fix the min-heap property if it is violated
-        while (array[current] < array[parent(current)]) {
-            swap(current, parent(current));
-            current = parent(current);
+        while (this.data[cur] < this.data[parent(cur)]) {
+            swap(cur, parent(cur));
+            cur = parent(cur);
         }
         size++;
         return true;
     }
 
-    /**
-     * Removes and return the minimum element from heap.
-     *
-     * @return
-     */
+    @Override
     public int remove() {
         if (isEmpty()) {
-            return Integer.MIN_VALUE;
+            throw new RuntimeException("MinHeap is empty");
         }
-        // Since its a min-heap, so root is minimum element.
-        int popped = this.array[0];
-        this.array[0] = this.array[--size];
-        minHeapify(0);
-        return popped;
+        // 移除最顶上的元素
+        int min = this.data[0];
+        // 将最后一个元素放置在最顶的位置
+        this.data[0] = this.data[--size];
+        // 由上到下递归堆化
+        heapify(0);
+        return min;
     }
 
     /**
-     * A recursive method to heapify a subtree with the root at given index.
-     * This method assumes that the subtrees is already heapified
+     * 最小堆的堆化
      *
-     * @param pos
+     * @param index 当前节点的索引
      */
-    private void minHeapify(int pos) {
-        if (isLeaf(pos)) {
+    @Override
+    public void heapify(int index) {
+        if (isLeaf(index)) {
             return;
         }
-
-        int l = leftChild(pos);
-        int r = rightChild(pos);
-
-        int smallest = pos;
-        if (array[l] < array[smallest]) {
-            smallest = l;
+        int minIndex = index;
+        int leftIndex = leftChild(index);
+        int rightIndex = rightChild(index);
+        // 找出父节点和左右子节点中的最小的一个
+        if (this.data[leftIndex] < this.data[minIndex]) {
+            minIndex = leftIndex;
         }
-        if (array[r] < array[smallest]) {
-            smallest = r;
+        if (this.data[rightIndex] < this.data[minIndex]) {
+            minIndex = rightIndex;
         }
-        if (smallest != pos) {
-            swap(smallest, pos);
-            minHeapify(smallest);
+        // 说明父节点不是最小的，需要和最小的交换
+        if (minIndex != index) {
+            swap(minIndex, index);
+            // 继续递归的向下堆化，维持最小堆得性质
+            heapify(minIndex);
         }
-    }
-
-    /**
-     * Function to print the contents of the heap
-     */
-    public void printHeap() {
-        for (int i = 0; i < (size / 2); i++) {
-            System.out.print("Parent : " + array[i]);
-            if (leftChild(i) < size)
-                System.out.print(" Left : " + array[leftChild(i)]);
-            if (rightChild(i) < size)
-                System.out.print(" Right :" + array[rightChild(i)]);
-            System.out.println();
-        }
-    }
-
-    public void minHeap() {
-        for (int pos = ((size - 1) / 2); pos >= 1; pos--) {
-            minHeapify(pos);
-        }
-    }
-
-    public int[] getArray() {
-        return array;
     }
 }
