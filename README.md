@@ -18,7 +18,12 @@
 * [并查集](src/main/java/algorithm/topics/datastructure/UnionFindSet.java)
   
 ## Algorithm
-
+### Sort
+* [Heap Sort](src/main/java/algorithm/topics/sort/HeapSort.java)
+* [Quick Sort](src/main/java/algorithm/topics/sort/QuickSort.java)
+* [Selection Sort](src/main/java/algorithm/topics/sort/SelectionSort.java)
+* [Insert Sort](src/main/java/algorithm/topics/sort/InsertSort.java)
+* [Bubble Sort](src/main/java/algorithm/topics/sort/BubbleSort.java)
 ## LeetCode
 ### Easy
 * [Add Binary](src/main/java/algorithm/leetcode/easy/AddBinary.java)
