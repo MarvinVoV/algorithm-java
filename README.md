@@ -27,3 +27,5 @@
 ## LeetCode
 ### Easy
 * [Add Binary](src/main/java/algorithm/leetcode/easy/AddBinary.java)
+* [爬楼梯(动态规划和递归求解)](src/main/java/algorithm/leetcode/easy/ClimbStairs.java)
+* [多数元素](src/main/java/algorithm/leetcode/easy/MajorityElement.java)
