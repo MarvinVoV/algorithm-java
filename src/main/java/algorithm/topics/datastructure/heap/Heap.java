@@ -34,7 +34,7 @@ public abstract class Heap {
     }
 
     protected boolean isLeaf(int i) {
-        return leftChild(i) >= this.size || rightChild(i) >= this.size;
+        return leftChild(i) >= this.size || rightChild(i) > this.size;
     }
 
     protected void swap(int a, int b) {
