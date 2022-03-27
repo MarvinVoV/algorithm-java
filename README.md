@@ -18,6 +18,10 @@
     * [LRU Cache implemented by double linked list](src/main/java/algorithm/topics/datastructure/lru/LRUCache.java)
 * [并查集](src/main/java/algorithm/topics/datastructure/UnionFindSet.java)
 * [Graph(DFS,BFS,Kahn拓扑排序)](src/main/java/algorithm/topics/datastructure/graph/Graph.java)
+  * [dijkstra算法-单源最短路径](src/main/java/algorithm/topics/datastructure/graph/Dijkstra.java)
+  * [Floyd算法-多源最短路径](src/main/java/algorithm/topics/datastructure/graph/Floyd.java)
+  * [Kruskal算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Kruskal.java)
+  * [Prim算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Prim.java)
 
 ## Algorithm
 
