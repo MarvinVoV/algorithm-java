@@ -37,14 +37,25 @@ public class MajorityElement {
      * @return
      */
     public static int majorityElementByBoyerMoore(int[] nums) {
-        Integer candidate = null;
+        int candidate = -1;
         int count = 0;
         for (int num : nums) {
             if (count == 0) {
                 candidate = num;
             }
-            count += (candidate == num) ? 1 : -1;
+            if (candidate == num) {
+                count++;
+            } else {
+                count--;
+            }
         }
+        System.out.println(count);
         return candidate;
+    }
+
+    public static void main(String[] args) {
+//        int r = majorityElementByBoyerMoore(new int[]{1, 2, 5, 9, 5, 9, 5, 5, 5});
+        int r = majorityElementByBoyerMoore(new int[]{3,2});
+        System.out.println(r);
     }
 }
