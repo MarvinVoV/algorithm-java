@@ -33,6 +33,11 @@
 * [Insert Sort](src/main/java/algorithm/topics/sort/InsertSort.java)
 * [Bubble Sort](src/main/java/algorithm/topics/sort/BubbleSort.java)
 
+### Search
+* [Binary Search](src/main/java/algorithm/topics/search/BinarySearch.java)
+* [KMP](src/main/java/algorithm/topics/search/KMP.java)
+
+
 ## LeetCode
 
 ### Easy
