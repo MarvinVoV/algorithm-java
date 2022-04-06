@@ -38,7 +38,7 @@
 * [KMP](src/main/java/algorithm/topics/search/KMP.java)
 
 ### DP
-* [Coin Chang](src/main/java/algorithm/topics/dp/CoinChange.java)
+* [Coin Change](src/main/java/algorithm/topics/dp/CoinChange.java)
 
 ## LeetCode
 
