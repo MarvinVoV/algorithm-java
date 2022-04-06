@@ -37,6 +37,8 @@
 * [Binary Search](src/main/java/algorithm/topics/search/BinarySearch.java)
 * [KMP](src/main/java/algorithm/topics/search/KMP.java)
 
+### DP
+* [Coin Chang](src/main/java/algorithm/topics/dp/CoinChange.java)
 
 ## LeetCode
 
