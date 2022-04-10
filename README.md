@@ -39,6 +39,10 @@
 
 ### DP
 * [Coin Change](src/main/java/algorithm/topics/dp/CoinChange.java)
+* [Unique Paths](src/main/java/algorithm/topics/dp/UniquePaths.java)
+* [Max Profit](src/main/java/algorithm/topics/dp/MaxProfit.java)
+* [Jump Game](src/main/java/algorithm/topics/dp/JumpGame.java)
+* [Maximum Product SubArray](src/main/java/algorithm/topics/dp/MaximumProductSubArray.java)
 
 ## LeetCode
 
