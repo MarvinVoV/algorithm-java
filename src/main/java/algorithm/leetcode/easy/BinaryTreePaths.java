@@ -126,4 +126,31 @@ public class BinaryTreePaths {
     }
 
 
+    /**
+     * 输出二叉树的所有路径
+     * https://leetcode-cn.com/problems/binary-tree-paths/
+     *
+     * @param root
+     * @return
+     */
+    public static List<String> binaryTreePaths2(TreeNode root) {
+        List<String> paths = new ArrayList<>();
+        dfs(root, "", paths);
+        return paths;
+    }
+
+    private static void dfs(TreeNode root, String path, List<String> paths) {
+        if (root == null) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder(path);
+        sb.append(root.val);
+        if (root.left == null && root.right == null) {
+            paths.add(sb.toString());
+        } else {
+            sb.append("->");
+            dfs(root.left, sb.toString(), paths);
+            dfs(root.right, sb.toString(), paths);
+        }
+    }
 }
