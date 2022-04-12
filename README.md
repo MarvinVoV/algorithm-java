@@ -43,7 +43,7 @@
 * [Max Profit](src/main/java/algorithm/topics/dp/MaxProfit.java)
 * [Jump Game](src/main/java/algorithm/topics/dp/JumpGame.java)
 * [Maximum Product SubArray](src/main/java/algorithm/topics/dp/MaximumProductSubArray.java)
-
+* [0-1 背包](src/main/java/algorithm/topics/dp/knapsack/ZeroOneKnapsack.java)
 ## LeetCode
 
 ### Easy

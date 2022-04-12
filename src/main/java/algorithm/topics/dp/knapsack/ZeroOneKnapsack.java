@@ -42,4 +42,82 @@ public class ZeroOneKnapsack {
         return K[n][W];
     }
 
+
+    /**
+     * 背包能装太最大重量
+     */
+    private static int maxW = Integer.MIN_VALUE;
+
+    /**
+     * 求背包中能装的最大重量
+     *
+     * @param i     考察到第几个物品 （0-based)
+     * @param cw    当前背包中装进去的重量和
+     * @param items 每个物品的重量
+     * @param n     表示物品的个数
+     * @param w     表示背包可承受的最大重量
+     */
+    public static void zeroOneKnapsackByRecur(int i, int cw, int[] items, int n, int w) {
+        // cw == w 表示装满了； i == n 表示已经考察完了所有物品
+        if (cw == w || i == n) {
+            if (cw > maxW) {
+                maxW = cw;
+            }
+            return;
+        }
+        // 选择不装当前物品，考察下一个物品
+        zeroOneKnapsackByRecur(i + 1, cw, items, n, w);
+        // 选择装当前物品，并考察下一个物品
+        if (cw + items[i] <= w) {
+            zeroOneKnapsackByRecur(i + 1, cw + items[i], items, n, w);
+        }
+    }
+
+
+    /**
+     * 求背包中能装的最大重量 - 通过备忘录来优化
+     *
+     * @param i     考察到第几个物品 （0-based)
+     * @param cw    当前背包中装进去的重量和
+     * @param items 每个物品的重量
+     * @param n     表示物品的个数
+     * @param w     表示背包可承受的最大重量
+     */
+    public static void zeroOneKnapsackByRecurWithMemo(int i, int cw, int[] items, int n, int w) {
+        boolean[][] memo = new boolean[n][w + 1];
+        doZeroOneKnapsackByRecurWithMemo(i, cw, items, n, w, memo);
+    }
+
+    private static void doZeroOneKnapsackByRecurWithMemo(int i, int cw, int[] items, int n, int w, boolean[][] memo) {
+        if (cw == w || i == n) {
+            if (cw > maxW) {
+                maxW = cw;
+            }
+            return;
+        }
+        // 重复状态计算
+        if (memo[i][cw]) {
+            return;
+        }
+        // 记录(i, cw)状态
+        memo[i][cw] = true;
+
+        // 选择不装第i个物品
+        doZeroOneKnapsackByRecurWithMemo(i + 1, cw, items, n, w, memo);
+
+        // 选择装第i个物品
+        if (cw + items[i] <= w) {
+            doZeroOneKnapsackByRecurWithMemo(i + 1, cw + items[i], items, n, w, memo);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] items = new int[]{2, 2, 4, 6, 3};
+        int n = items.length;
+        int w = 9;
+//        zeroOneKnapsackByRecur(0, 0, items, n, w);
+        zeroOneKnapsackByRecurWithMemo(0, 0, items, n, w);
+        System.out.println(maxW);
+    }
+
 }
