@@ -1,6 +1,9 @@
 
 package algorithm.leetcode.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * <a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/">Remove Duplicates from Sorted List</a>
  *
@@ -16,6 +19,30 @@ public class RemoveDuplicatesFromSortedList {
         ListNode(int x) {
             val = x;
         }
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/remove-duplicate-node-lcci/
+     *
+     * @param head
+     * @return
+     */
+    public static ListNode removeDuplicateNodes(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        Set<Integer> occurred = new HashSet<>();
+        occurred.add(head.val);
+        ListNode pos = head;
+        while (pos.next != null) {
+            ListNode cur = pos.next;
+            if (occurred.add(cur.val)) {
+                pos = pos.next;
+            } else {
+                pos.next = pos.next.next;
+            }
+        }
+        return head;
     }
 
     public static ListNode deleteDuplicates(ListNode head) {
