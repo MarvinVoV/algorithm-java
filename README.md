@@ -18,10 +18,10 @@
     * [LRU Cache implemented by double linked list](src/main/java/algorithm/topics/datastructure/lru/LRUCache.java)
 * [并查集](src/main/java/algorithm/topics/datastructure/UnionFindSet.java)
 * [Graph(DFS,BFS,Kahn拓扑排序)](src/main/java/algorithm/topics/datastructure/graph/Graph.java)
-  * [dijkstra算法-单源最短路径](src/main/java/algorithm/topics/datastructure/graph/Dijkstra.java)
-  * [Floyd算法-多源最短路径](src/main/java/algorithm/topics/datastructure/graph/Floyd.java)
-  * [Kruskal算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Kruskal.java)
-  * [Prim算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Prim.java)
+    * [dijkstra算法-单源最短路径](src/main/java/algorithm/topics/datastructure/graph/Dijkstra.java)
+    * [Floyd算法-多源最短路径](src/main/java/algorithm/topics/datastructure/graph/Floyd.java)
+    * [Kruskal算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Kruskal.java)
+    * [Prim算法-最小生成树](src/main/java/algorithm/topics/datastructure/graph/Prim.java)
 
 ## Algorithm
 
@@ -34,16 +34,20 @@
 * [Bubble Sort](src/main/java/algorithm/topics/sort/BubbleSort.java)
 
 ### Search
+
 * [Binary Search](src/main/java/algorithm/topics/search/BinarySearch.java)
 * [KMP](src/main/java/algorithm/topics/search/KMP.java)
 
 ### DP
+
 * [Coin Change](src/main/java/algorithm/topics/dp/CoinChange.java)
 * [Unique Paths](src/main/java/algorithm/topics/dp/UniquePaths.java)
 * [Max Profit](src/main/java/algorithm/topics/dp/MaxProfit.java)
 * [Jump Game](src/main/java/algorithm/topics/dp/JumpGame.java)
 * [Maximum Product SubArray](src/main/java/algorithm/topics/dp/MaximumProductSubArray.java)
 * [0-1 背包](src/main/java/algorithm/topics/dp/knapsack/ZeroOneKnapsack.java)
+* [The Longest Increasing Subsequence](src/main/java/algorithm/topics/dp/LongestIncreasingSubSequence.java)
+
 ## LeetCode
 
 ### Easy
@@ -53,6 +57,6 @@
 * [多数元素](src/main/java/algorithm/leetcode/easy/MajorityElement.java)
 * [Binary Tree Paths](src/main/java/algorithm/leetcode/easy/BinaryTreePaths.java)
 
-
 ## Unclassified
+
 * [JsonCompare](src/main/java/algorithm/topics/unclassified/JsonCompare.java)
