@@ -51,6 +51,16 @@
 
 ## LeetCode
 
+### Double Pointer
+
+* [Reverse Words](src/main/java/algorithm/leetcode/doublepointer/ReverseWords.java)
+* [Middle Of LinkedList](src/main/java/algorithm/leetcode/doublepointer/MiddleOfLinkedList.java)
+* [Remove N th Node From End of LinkedList](src/main/java/algorithm/leetcode/doublepointer/RemoveNthNodeFromEndOfList.java)
+
+### Tree
+
+* [Merge Two Binary Trees](src/main/java/algorithm/leetcode/tree/MergeTwoBinaryTree.java)
+
 ### Easy
 
 * [Add Binary](src/main/java/algorithm/leetcode/easy/AddBinary.java)
