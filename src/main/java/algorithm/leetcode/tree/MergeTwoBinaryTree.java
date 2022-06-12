@@ -9,6 +9,12 @@ import algorithm.leetcode.domain.TreeNode;
  * @version MergeTwoBinaryTree.java, v 0.1 2022/05/22 22:59 Exp $
  */
 public class MergeTwoBinaryTree {
+    /**
+     * 深度优先搜索 Depth-First Search
+     * @param root1
+     * @param root2
+     * @return
+     */
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
         if (root1 == null) {
             return root2;
