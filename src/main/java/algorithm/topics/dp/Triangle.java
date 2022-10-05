@@ -4,11 +4,16 @@
  */
 package algorithm.topics.dp;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * <a href="https://leetcode.com/problems/triangle/">Triangle</a>
+ * <a href="https://leetcode.cn/problems/triangle/">Triangle</a>
  *
  * @author hufeng
  * @version $Id: Triangle.java, v 0.1 2018年11月29日 9:36 PM hufeng Exp $
@@ -66,6 +71,18 @@ public class Triangle {
 
 
     /**
+     * <pre>
+     * [2]
+     * [3,4]
+     * [6,5,7]
+     * [4,1,8,3]
+     * </pre>
+     *
+     * 动态规划解题思路: 用f[i][j]表示从三角形顶部走到位置(i,j)的最小路径和。这里i,j分别表示三角形中的第i行和第j列。
+     * 由于每一步只能移动到下一行「相邻的节点」上。于是状态转移方程式:
+     * f[i][j] = min(f[i-1][j-1], f[i-1][j]) + c[i][j]
+     *
+     *
      * Reference: <a href="https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle"/>
      *
      * @param triangle
@@ -74,7 +91,8 @@ public class Triangle {
     public static int minimumTotal2(List<List<Integer>> triangle) {
         int n = triangle.size();
         int[] dp = new int[n + 1];
-        for (int i = n - 1; i >= 0; i++) {
+
+        for (int i = n - 1; i >= 0; i--) {
             for (int j = 0; j <= i; j++) {
                 dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]);
             }
@@ -82,5 +100,36 @@ public class Triangle {
         return dp[0];
     }
 
+    /**
+     * 递归求解
+     *
+     * @param triangle
+     * @return
+     */
+    public static int minimumTotal3(List<List<Integer>> triangle) {
+        if (triangle.size() == 0) {
+            return 0;
+        }
+        return recursion(triangle, 0, 0);
+    }
+
+    private static int recursion(List<List<Integer>> triangle, int row, int col) {
+        if (row == triangle.size() - 1) {
+            return triangle.get(row).get(col);
+        }
+        return triangle.get(row).get(col) + Math.min(recursion(triangle, row + 1, col),
+                recursion(triangle, row + 1, col + 1));
+    }
+
+    public static void main(String[] args) {
+        List<List<Integer>> triangle = new ArrayList<>();
+        triangle.add(Arrays.asList(2));
+        triangle.add(Arrays.asList(3, 4));
+        triangle.add(Arrays.asList(6, 5, 7));
+        triangle.add(Arrays.asList(4, 1, 8, 3));
+//        int ans = minimumTotal3(triangle);
+        int ans = minimumTotal2(triangle);
+        System.out.println(ans);
+    }
 
 }

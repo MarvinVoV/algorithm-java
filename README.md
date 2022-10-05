@@ -38,6 +38,10 @@
 * [Binary Search](src/main/java/algorithm/topics/search/BinarySearch.java)
 * [KMP](src/main/java/algorithm/topics/search/KMP.java)
 
+### Recursion
+* [括号生成](src/main/java/algorithm/topics/recursion/GenerateParentheses.java)
+* [分割回文字符串](src/main/java/algorithm/topics/recursion/PalindromePartitioning.java)
+
 ### DP
 
 * [Coin Change](src/main/java/algorithm/topics/dp/CoinChange.java)
@@ -48,6 +52,9 @@
 * [0-1 背包](src/main/java/algorithm/topics/dp/knapsack/ZeroOneKnapsack.java)
 * [The Longest Increasing Subsequence](src/main/java/algorithm/topics/dp/LongestIncreasingSubSequence.java)
 * [The Largest SubArray Sum](src/main/java/algorithm/topics/dp/LargestSumContiguousSubArray.java)
+* [最小路径和](src/main/java/algorithm/topics/dp/MinimumPathSum.java)
+* [三角形最小路径和](src/main/java/algorithm/topics/dp/Triangle.java)
+* [最长回文子串](src/main/java/algorithm/topics/dp/LongestPalindrome.java)
 
 ## LeetCode
 
