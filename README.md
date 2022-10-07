@@ -13,7 +13,7 @@
     * [Min-Heap](src/main/java/algorithm/topics/datastructure/heap/MinHeap.java)
 * [Tree](src/main/java/algorithm/topics/datastructure/tree)
     * [Binary Search Tree](src/main/java/algorithm/topics/datastructure/tree/bst/BinarySearchTree.java)
-    * [二叉树层次遍历](src/main/java/algorithm/topics/datastructure/tree/traverse/BinaryTreeTraverse.java)
+    * [二叉树的各种遍历](src/main/java/algorithm/topics/datastructure/tree/traverse/BinaryTreeTraverse.java)
 * [LRU](src/main/java/algorithm/topics/datastructure/lru)
     * [LRU Cache implemented by double linked list](src/main/java/algorithm/topics/datastructure/lru/LRUCache.java)
 * [并查集](src/main/java/algorithm/topics/datastructure/UnionFindSet.java)
