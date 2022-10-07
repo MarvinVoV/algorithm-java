@@ -15,6 +15,12 @@ public class BinaryTreeTraverse {
         }
     }
 
+    /**
+     * Level-Traversal 层次遍历
+     *
+     * @param root
+     * @return
+     */
     public static List<List<Integer>> levelTraversal(TreeNode root) {
         if (root == null) {
             return null;
