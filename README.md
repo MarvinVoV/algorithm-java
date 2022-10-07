@@ -57,6 +57,7 @@
 * [三角形最小路径和](src/main/java/algorithm/topics/dp/Triangle.java)
 * [最长回文子串](src/main/java/algorithm/topics/dp/LongestPalindrome.java)
 * [零和一](src/main/java/algorithm/topics/dp/OneAndZeros.java)
+* [打家劫舍](src/main/java/algorithm/topics/dp/HouseRobber.java)
 * 
 
 ## LeetCode
