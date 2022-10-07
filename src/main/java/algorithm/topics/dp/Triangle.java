@@ -4,10 +4,6 @@
  */
 package algorithm.topics.dp;
 
-import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
-
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +16,7 @@ import java.util.List;
  */
 public class Triangle {
     /**
-     * 动态规划求解-Top Down version
+     * 方法一： 递归+备忘录
      * 一定是自顶向下求解, 因为从最小规模的子问题求解，是局部解，但不是全局下的最优解
      *
      * @param triangle
@@ -71,18 +67,19 @@ public class Triangle {
 
 
     /**
+     * 方法二：动态规划 + 空间优化
      * <pre>
      * [2]
      * [3,4]
      * [6,5,7]
      * [4,1,8,3]
      * </pre>
-     *
+     * <p>
      * 动态规划解题思路: 用f[i][j]表示从三角形顶部走到位置(i,j)的最小路径和。这里i,j分别表示三角形中的第i行和第j列。
      * 由于每一步只能移动到下一行「相邻的节点」上。于是状态转移方程式:
      * f[i][j] = min(f[i-1][j-1], f[i-1][j]) + c[i][j]
-     *
-     *
+     * <p>
+     * <p>
      * Reference: <a href="https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle"/>
      *
      * @param triangle
@@ -92,6 +89,7 @@ public class Triangle {
         int n = triangle.size();
         int[] dp = new int[n + 1];
 
+        // 从底向上操作
         for (int i = n - 1; i >= 0; i--) {
             for (int j = 0; j <= i; j++) {
                 dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]);
@@ -101,7 +99,7 @@ public class Triangle {
     }
 
     /**
-     * 递归求解
+     * 方法三：递归求解
      *
      * @param triangle
      * @return

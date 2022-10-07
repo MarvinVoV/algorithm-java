@@ -44,17 +44,20 @@
 
 ### DP
 
-* [Coin Change](src/main/java/algorithm/topics/dp/CoinChange.java)
-* [Unique Paths](src/main/java/algorithm/topics/dp/UniquePaths.java)
+* [零钱兑换](src/main/java/algorithm/topics/dp/CoinChange.java)
+* [零钱兑换2](src/main/java/algorithm/topics/dp/CoinChange2.java)
+* [路径的数目](src/main/java/algorithm/topics/dp/UniquePaths.java)
 * [Max Profit](src/main/java/algorithm/topics/dp/MaxProfit.java)
 * [Jump Game](src/main/java/algorithm/topics/dp/JumpGame.java)
 * [Maximum Product SubArray](src/main/java/algorithm/topics/dp/MaximumProductSubArray.java)
 * [0-1 背包](src/main/java/algorithm/topics/dp/knapsack/ZeroOneKnapsack.java)
-* [The Longest Increasing Subsequence](src/main/java/algorithm/topics/dp/LongestIncreasingSubSequence.java)
+* [最长递增子序列](src/main/java/algorithm/topics/dp/LongestIncreasingSubSequence.java)
 * [The Largest SubArray Sum](src/main/java/algorithm/topics/dp/LargestSumContiguousSubArray.java)
 * [最小路径和](src/main/java/algorithm/topics/dp/MinimumPathSum.java)
 * [三角形最小路径和](src/main/java/algorithm/topics/dp/Triangle.java)
 * [最长回文子串](src/main/java/algorithm/topics/dp/LongestPalindrome.java)
+* [零和一](src/main/java/algorithm/topics/dp/OneAndZeros.java)
+* 
 
 ## LeetCode
 

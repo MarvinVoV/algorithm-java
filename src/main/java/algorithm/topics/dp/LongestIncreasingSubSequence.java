@@ -1,5 +1,7 @@
 package algorithm.topics.dp;
 
+import java.util.Arrays;
+
 /**
  * 求最长递增子序列的长度
  * The Longest Increasing Subsequence (LIS)
@@ -10,7 +12,7 @@ package algorithm.topics.dp;
 public class LongestIncreasingSubSequence {
 
     /**
-     * 递归求解LIS
+     * 方法一：递归求解LIS
      *
      * @param nums
      * @return
@@ -44,7 +46,7 @@ public class LongestIncreasingSubSequence {
     }
 
     /**
-     * 动态规划求解lis
+     * 方法二：动态规划求解lis
      *
      * @param nums
      * @return
@@ -53,9 +55,8 @@ public class LongestIncreasingSubSequence {
         int n = nums.length;
         int[] lis = new int[n];
         // init
-        for (int i = 0; i < n; i++) {
-            lis[i] = 1;
-        }
+        Arrays.fill(lis, 1);
+
         // 自底向上执行
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
@@ -64,11 +65,7 @@ public class LongestIncreasingSubSequence {
                 }
             }
         }
-        int max = 1;
-        for (int i = 0; i < n; i++) {
-            max = Math.max(max, lis[i]);
-        }
-        return max;
+        return Arrays.stream(lis).max().getAsInt();
     }
 
     public static void main(String[] args) {
