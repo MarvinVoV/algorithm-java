@@ -58,7 +58,10 @@
 * [最长回文子串](src/main/java/algorithm/topics/dp/LongestPalindrome.java)
 * [零和一](src/main/java/algorithm/topics/dp/OneAndZeros.java)
 * [打家劫舍](src/main/java/algorithm/topics/dp/HouseRobber.java)
-* 
+* [最大升序子数组和](src/main/java/algorithm/topics/dp/MaximumAscendingSubArraySum.java)
+
+### Greedy
+* [优势洗牌](src/main/java/algorithm/topics/greedy/AdvantageShuffle.java)
 
 ## LeetCode
 
