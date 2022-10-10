@@ -43,6 +43,10 @@
 * [括号生成](src/main/java/algorithm/topics/recursion/GenerateParentheses.java)
 * [分割回文字符串](src/main/java/algorithm/topics/recursion/PalindromePartitioning.java)
 
+### Counting
+
+* [Check If One String Swap Can Make Strings Equal](src/main/java/algorithm/topics/counting/CheckIfOneStringSwapCanMakeStringsEqual.java)
+
 ### DP
 
 * [最长公共子序列](src/main/java/algorithm/topics/dp/LongestCommonSubSequence2.java)
