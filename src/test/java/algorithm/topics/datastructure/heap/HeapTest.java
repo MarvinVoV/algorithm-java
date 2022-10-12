@@ -1,5 +1,7 @@
 package algorithm.topics.datastructure.heap;
 
+import algorithm.datastructure.heap.MaxHeap;
+import algorithm.datastructure.heap.MinHeap;
 import org.junit.jupiter.api.Test;
 
 public class HeapTest {

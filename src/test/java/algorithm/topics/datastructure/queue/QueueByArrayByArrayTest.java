@@ -1,5 +1,6 @@
 package algorithm.topics.datastructure.queue;
 
+import algorithm.datastructure.queue.QueueByArray;
 import org.junit.jupiter.api.Test;
 
 class QueueByArrayByArrayTest {

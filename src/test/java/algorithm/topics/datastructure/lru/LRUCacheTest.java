@@ -1,8 +1,7 @@
 package algorithm.topics.datastructure.lru;
 
+import algorithm.datastructure.lru.LRUCache;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author hufeng

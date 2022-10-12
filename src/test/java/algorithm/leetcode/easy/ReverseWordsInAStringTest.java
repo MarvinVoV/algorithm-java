@@ -2,7 +2,7 @@ package algorithm.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.ReverseWordsInAString.reverseWords;
+import static algorithm.topics.doublepointer.ReverseWordsInAString.reverseWords;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReverseWordsInAStringTest {

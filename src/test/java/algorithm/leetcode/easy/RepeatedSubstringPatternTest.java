@@ -2,7 +2,7 @@ package algorithm.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.RepeatedSubstringPattern.repeatedSubstringPattern;
+import static algorithm.topics.strings.RepeatedSubstringPattern.repeatedSubstringPattern;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

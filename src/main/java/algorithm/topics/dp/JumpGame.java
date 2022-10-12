@@ -1,7 +1,7 @@
 package algorithm.topics.dp;
 
 /**
- * https://leetcode-cn.com/problems/jump-game/
+ * <a href="https://leetcode.cn/problems/jump-game>Jump Game</a>
  */
 public class JumpGame {
     /**

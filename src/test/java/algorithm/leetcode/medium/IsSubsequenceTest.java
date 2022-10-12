@@ -2,8 +2,8 @@ package algorithm.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.medium.IsSubsequence.isSubSequence;
-import static algorithm.leetcode.medium.IsSubsequence.isSubSequence2;
+import static algorithm.topics.doublepointer.IsSubsequence.isSubSequence;
+import static algorithm.topics.doublepointer.IsSubsequence.isSubSequence2;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IsSubsequenceTest {

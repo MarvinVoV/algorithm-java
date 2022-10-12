@@ -2,7 +2,7 @@ package algorithm.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.medium.SubarrayProductLessThanK.numSubarrayProductLessThanK2;
+import static algorithm.topics.arrays.SubarrayProductLessThanK.numSubarrayProductLessThanK2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SubarrayProductLessThanKTest {

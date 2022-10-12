@@ -2,7 +2,7 @@ package algorithm.leetcode.topic.dp.medium;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.topic.dp.medium.PartitionEqualSubsetSum.canPartition2;
+import static algorithm.topics.dp.PartitionEqualSubsetSum.canPartition2;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PartitionEqualSubsetSumTest {

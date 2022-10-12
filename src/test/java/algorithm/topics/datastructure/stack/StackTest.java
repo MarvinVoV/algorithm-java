@@ -1,8 +1,7 @@
 package algorithm.topics.datastructure.stack;
 
+import algorithm.datastructure.stack.Stack;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StackTest {
 

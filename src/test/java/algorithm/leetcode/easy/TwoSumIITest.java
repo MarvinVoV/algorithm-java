@@ -2,7 +2,7 @@ package algorithm.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.TwoSumII.twoSum;
+import static algorithm.topics.doublepointer.TwoSumII.twoSum;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class TwoSumIITest {

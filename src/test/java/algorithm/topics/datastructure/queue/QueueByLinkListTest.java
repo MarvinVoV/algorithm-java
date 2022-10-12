@@ -1,5 +1,6 @@
 package algorithm.topics.datastructure.queue;
 
+import algorithm.datastructure.queue.QueueByLinkList;
 import org.junit.jupiter.api.Test;
 
 class QueueByLinkListTest {

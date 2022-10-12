@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static algorithm.leetcode.medium.Subsets.subsets;
+import static algorithm.topics.recursion.Subsets.subsets;
 
 class SubsetsTest {
 

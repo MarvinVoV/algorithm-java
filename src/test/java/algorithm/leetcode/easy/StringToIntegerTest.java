@@ -2,7 +2,7 @@ package algorithm.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.StringToInteger.myAtoI;
+import static algorithm.topics.strings.StringToInteger.myAtoI;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringToIntegerTest {

@@ -2,7 +2,7 @@ package algorithm.leetcode.medium;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.medium.LongestSubstringWithAtLeastKRepeatingCharacters.longestSubstring;
+import static algorithm.topics.recursion.LongestSubstringWithAtLeastKRepeatingCharacters.longestSubstring;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LongestSubstringWithAtLeastKRepeatingCharactersTest {

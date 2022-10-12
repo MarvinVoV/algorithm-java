@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static algorithm.leetcode.easy.SearchForARange.searchRange;
+import static algorithm.topics.search.SearchForARange.searchRange;
 
 class SearchForARangeTest {
 

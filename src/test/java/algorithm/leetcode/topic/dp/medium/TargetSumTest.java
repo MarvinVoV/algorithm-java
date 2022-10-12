@@ -2,7 +2,7 @@ package algorithm.leetcode.topic.dp.medium;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.topic.dp.medium.TargetSum.findTargetSumWays;
+import static algorithm.topics.dp.TargetSum.findTargetSumWays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TargetSumTest {

@@ -1,5 +1,6 @@
 package algorithm.topics.datastructure.deque;
 
+import algorithm.datastructure.deque.Deque;
 import org.junit.jupiter.api.Test;
 
 class DequeTest {

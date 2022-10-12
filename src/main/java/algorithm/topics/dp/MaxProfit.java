@@ -2,7 +2,7 @@ package algorithm.topics.dp;
 
 /**
  * 买卖股票最佳时机
- * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+ * <a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock">Best Time to Buy And Sell Stock</a>
  */
 public class MaxProfit {
     /**

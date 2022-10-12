@@ -2,7 +2,7 @@ package algorithm.leetcode.easy;
 
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.WordPattern.wordPattern;
+import static algorithm.topics.hashtable.WordPattern.wordPattern;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WordPatternTest {
