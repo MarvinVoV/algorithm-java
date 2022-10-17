@@ -98,6 +98,7 @@
 
 * [字符串转换整数(atoi)](src/main/java/algorithm/topics/strings/StringToInteger.java)
 * [重复的子字符串](src/main/java/algorithm/topics/strings/RepeatedSubstringPattern.java)
+* [找不同](src/main/java/algorithm/topics/strings/FindTheDifference.java)
 
 ### Hashtable
 

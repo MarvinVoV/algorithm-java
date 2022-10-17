@@ -22,22 +22,30 @@ public class MaxProfit {
         return maxProfit;
     }
 
-    public static int maxProfitByDp(int[] prices) {
+    /**
+     * 一次循环，找最低点和最高点的差
+     *
+     * @param prices
+     * @return
+     */
+    public static int maxProfit(int[] prices) {
         int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < minPrice) {
-                minPrice = prices[i];
-            } else if (prices[i] - minPrice > maxProfit) {
-                maxProfit = prices[i] - minPrice;
+        for (int price : prices) {
+            if (price < minPrice) {
+                minPrice = price;
+            } else if (price - minPrice > maxProfit) {
+                maxProfit = price - minPrice;
             }
         }
         return maxProfit;
+
     }
+
 
     public static void main(String[] args) {
         int[] prices = new int[]{7, 1, 5, 3, 6, 4};
-        System.out.println(maxProfitByDp(prices));
+        System.out.println(maxProfit(prices));
         System.out.println(maxProfitByBruteForce(prices));
     }
 }
