@@ -115,6 +115,7 @@
 * [乘积最大子数组](src/main/java/algorithm/topics/dp/MaximumProductSubArray.java)
 * [0-1 背包](src/main/java/algorithm/topics/dp/knapsack/ZeroOneKnapsack.java)
 * [最长递增子序列](src/main/java/algorithm/topics/dp/LongestIncreasingSubSequence.java)
+* [最长递增子序列的个数](src/main/java/algorithm/topics/dp/NumberOfLongestIncreasingSubsequence.java)
 * [The Largest SubArray Sum](src/main/java/algorithm/topics/dp/LargestSumContiguousSubArray.java)
 * [最小路径和](src/main/java/algorithm/topics/dp/MinimumPathSum.java)
 * [三角形最小路径和](src/main/java/algorithm/topics/dp/Triangle.java)
