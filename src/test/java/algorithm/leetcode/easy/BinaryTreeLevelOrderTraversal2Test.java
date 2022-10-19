@@ -1,5 +1,7 @@
 package algorithm.leetcode.easy;
 
+import algorithm.leetcode.domain.TreeNode;
+import algorithm.topics.binarytree.BinaryTreeLevelOrderTraversal2;
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +13,12 @@ class BinaryTreeLevelOrderTraversal2Test {
 
     @Test
     public void testNormalCase() {
-        BinaryTreeLevelOrderTraversal2.TreeNode root = new BinaryTreeLevelOrderTraversal2.TreeNode(3);
-        root.left = new BinaryTreeLevelOrderTraversal2.TreeNode(9);
-        BinaryTreeLevelOrderTraversal2.TreeNode right = new BinaryTreeLevelOrderTraversal2.TreeNode(20);
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        TreeNode right = new TreeNode(20);
         root.right = right;
-        right.left = new BinaryTreeLevelOrderTraversal2.TreeNode(15);
-        right.right = new BinaryTreeLevelOrderTraversal2.TreeNode(7);
+        right.left = new TreeNode(15);
+        right.right = new TreeNode(7);
 
         List<List<Integer>> result = BinaryTreeLevelOrderTraversal2.levelOrderBottom(root);
         System.out.println(JSON.toJSONString(result));
@@ -25,20 +27,20 @@ class BinaryTreeLevelOrderTraversal2Test {
 
     @Test
     public void testNormalCase2() {
-        BinaryTreeLevelOrderTraversal2.TreeNode node = new BinaryTreeLevelOrderTraversal2.TreeNode(3);
+        TreeNode node = new TreeNode(3);
         List<List<Integer>> result = BinaryTreeLevelOrderTraversal2.levelOrderBottom(node);
         System.out.println(JSON.toJSONString(result));
     }
 
     @Test
     public void testNormalCase3() {
-        BinaryTreeLevelOrderTraversal2.TreeNode root = new BinaryTreeLevelOrderTraversal2.TreeNode(1);
-        BinaryTreeLevelOrderTraversal2.TreeNode left = new BinaryTreeLevelOrderTraversal2.TreeNode(2);
-        BinaryTreeLevelOrderTraversal2.TreeNode right = new BinaryTreeLevelOrderTraversal2.TreeNode(3);
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(3);
         root.left = left;
         root.right = right;
-        left.left = new BinaryTreeLevelOrderTraversal2.TreeNode(4);
-        right.right = new BinaryTreeLevelOrderTraversal2.TreeNode(5);
+        left.left = new TreeNode(4);
+        right.right = new TreeNode(5);
         List<List<Integer>> result = BinaryTreeLevelOrderTraversal2.levelOrderBottom(root);
         System.out.println(JSON.toJSONString(result));
     }

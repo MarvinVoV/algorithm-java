@@ -66,8 +66,15 @@
 
 ### Binary Tree
 
+* [翻转二叉树](src/main/java/algorithm/topics/binarytree/InvertBinaryTree.java)
 * [二叉树所有路径](src/main/java/algorithm/topics/binarytree/BinaryTreePaths.java)
 * [合并二叉树](src/main/java/algorithm/topics/binarytree/MergeTwoBinaryTree.java)
+* [前序遍历构造二叉搜索树](src/main/java/algorithm/topics/binarytree/ConstructBinarySearchTreeFromPreorderTraversal.java)
+* [从前序与中序遍历序列构造二叉树](src/main/java/algorithm/topics/binarytree/ConstructBinaryTreeFromPreAndInOrder.java)
+* [二叉树的最小深度](src/main/java/algorithm/topics/binarytree/MinimumDepthOfBinaryTree.java)
+* [二叉搜索树的最小绝对差](src/main/java/algorithm/topics/binarytree/MinimumAbsoluteDifferenceInBST.java)
+* [路径总和](src/main/java/algorithm/topics/binarytree/PathSum.java)
+* [二叉树的层序遍历II](src/main/java/algorithm/topics/binarytree/BinaryTreeLevelOrderTraversal2.java)
 
 ### Search
 

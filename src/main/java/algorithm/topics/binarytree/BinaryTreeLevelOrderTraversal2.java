@@ -1,4 +1,6 @@
-package algorithm.leetcode.easy;
+package algorithm.topics.binarytree;
+
+import algorithm.leetcode.domain.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,16 +34,6 @@ import java.util.Stack;
  */
 
 public class BinaryTreeLevelOrderTraversal2 {
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-
-    }
 
     /**
      * Binary Tree Level Order Iterator. But think of all nodes of the same layers as one item of stack.

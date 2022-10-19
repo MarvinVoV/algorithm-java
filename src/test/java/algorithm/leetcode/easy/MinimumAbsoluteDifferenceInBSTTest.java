@@ -1,25 +1,26 @@
 package algorithm.leetcode.easy;
 
+import algorithm.leetcode.domain.TreeNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static algorithm.leetcode.easy.MinimumAbsoluteDifferenceInBST.getMinimumDifference;
+import static algorithm.topics.binarytree.MinimumAbsoluteDifferenceInBST.getMinimumDifference;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MinimumAbsoluteDifferenceInBSTTest {
 
-    private MinimumAbsoluteDifferenceInBST.TreeNode root;
+    private TreeNode root;
 
     @BeforeEach
     public void init() {
-        root = new MinimumAbsoluteDifferenceInBST.TreeNode(7);
-        MinimumAbsoluteDifferenceInBST.TreeNode a = new MinimumAbsoluteDifferenceInBST.TreeNode(4);
+        root = new TreeNode(7);
+        TreeNode a = new TreeNode(4);
         root.left = a;
 
-        MinimumAbsoluteDifferenceInBST.TreeNode b = new MinimumAbsoluteDifferenceInBST.TreeNode(8);
+        TreeNode b = new TreeNode(8);
         root.right = b;
 
-        MinimumAbsoluteDifferenceInBST.TreeNode c = new MinimumAbsoluteDifferenceInBST.TreeNode(3);
+        TreeNode c = new TreeNode(3);
         a.left = c;
 
     }

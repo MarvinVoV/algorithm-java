@@ -1,4 +1,6 @@
-package algorithm.leetcode.easy;
+package algorithm.topics.binarytree;
+
+import algorithm.leetcode.domain.TreeNode;
 
 /**
  * Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
@@ -17,7 +19,7 @@ package algorithm.leetcode.easy;
  * </pre>
  * Note: There are at least two nodes in this BST.
  * <p>
- * Reference: <a href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/discuss/">Minimum Absolute Difference in BST</a>
+ * Reference: <a href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/">Minimum Absolute Difference in BST</a>
  * Difficulty: Easy
  *
  * @author hufeng
@@ -25,20 +27,12 @@ package algorithm.leetcode.easy;
  */
 
 public class MinimumAbsoluteDifferenceInBST {
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            this.val = x;
-        }
-    }
-
     static int min = Integer.MAX_VALUE;
     static Integer prev = null;
 
     /**
+     * 对于升序数组，求任意两个元素之差的绝对值的最小值，一定是相邻两个元素的最小值；
+     * 二叉搜索树的性质： 二叉搜索树中序比那里得到的值序列是递增有序的；
      * The most common idea is to first inOrder traverse the tree and compare the delta between each of the adjacent values.
      * It's guaranteed to have the correct answer because it is a BST thus inOrder traversal values are sorted.
      *

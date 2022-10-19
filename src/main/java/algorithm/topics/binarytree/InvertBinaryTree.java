@@ -1,4 +1,6 @@
-package algorithm.leetcode.easy;
+package algorithm.topics.binarytree;
+
+import algorithm.leetcode.domain.TreeNode;
 
 /**
  * Invert a binary tree.
@@ -20,7 +22,7 @@ package algorithm.leetcode.easy;
  * </pre>
  * <p>
  * <p>
- * <a href="https://leetcode.com/problems/invert-binary-tree/description/">Invert Binary Tree</a>
+ * <a href="https://leetcode.cn/problems/invert-binary-tree/">Invert Binary Tree</a>
  * Difficulty: Easy
  * <p>
  * Trivia:
@@ -35,15 +37,6 @@ package algorithm.leetcode.easy;
  */
 
 public class InvertBinaryTree {
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public static TreeNode invertTree(TreeNode root) {
         if (root == null) {
